@@ -1,20 +1,22 @@
 class ArtworksController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:new, :create]
+
   def new
     @artwork = Artwork.new
   end
 
   def create
     @artwork = Artwork.new(artwork_params)
-    @artwork.user = @user
+    @artwork.user = current_user
     if @artwork.save
-      redirect_to my_artworks_path(@user)
+      redirect_to mine_path
     else
       render :new
     end
   end
 
   def mine
-
+    @artworks = Artwork.where(user_id = current_user)
   end
 
   private

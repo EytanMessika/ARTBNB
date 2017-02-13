@@ -1,0 +1,18 @@
+<div class="container-fluid">
+  <div class="row">
+    <% @artworks.each do |artwork| %>
+      <div class="col-xs-12 col-md-4">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path artwork.photo, height: 300, width: 400, crop: :fill %>');">
+          <div class="card-description">
+            <h2> <%= artwork.name %> </h2>
+            <p> <%= artwork.artist_name %> </p>
+            <p> <%= artwork.category %> </p>
+            <p> <%= artwork.dimensions %> </p>
+            <p> <%= artwork.price %> € </p>
+          </div>
+          <%= link_to "", artwork_path(artwork), class: "card-link" %>
+        </div>
+      </div>
+    <% end -%>
+  </div>
+</div>
