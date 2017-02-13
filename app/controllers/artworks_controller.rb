@@ -1,5 +1,5 @@
 class ArtworksController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:new, :create]
+  skip_before_action :authenticate_user!, only: [:show, :index]
 
   def new
     @artwork = Artwork.new
@@ -16,13 +16,13 @@ class ArtworksController < ApplicationController
   end
 
   def mine
-    @artworks = Artwork.where(user_id = current_user)
+    @artworks = Artwork.where(user: current_user)
   end
 
   private
 
   def artwork_params
-    params.require(:artwork).permit(:name, :artist_name, :type, :price,
+    params.require(:artwork).permit(:name, :artist_name, :category, :price,
     :dimensions, :user_id)
   end
 end
