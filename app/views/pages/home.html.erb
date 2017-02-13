@@ -1,2 +1,7 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner" style="background-image: url('<%= image_path("background.jpg")%>');">
+  <div class="banner-content">
+    <h1>You n' Art. </h1>
+    <h3>Rent a masterpiece for your next events. </h3>
+    <%= link_to 'Take a look', artworks_path, {class: "btn btn-primary"} %>
+  </div>
+</div>
