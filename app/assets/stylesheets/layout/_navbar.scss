@@ -13,6 +13,19 @@
   z-index: 50;
 }
 
+.navbar-action {
+  color: white;
+  font-weight: lighter;
+  margin-left: 20px;
+  margin-right: 20px;
+  text-decoration: none
+}
+
+.navbar-action:hover {
+  text-decoration: none;
+  color: white
+}
+
 .logo-name {
   text-decoration: none
 }
