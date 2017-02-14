@@ -3,7 +3,8 @@ Rails.application.routes.draw do
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :artworks
-  resources :bookings
+  resources :artworks do
+    resources :bookings
+  end
   get 'mine', to: 'artworks#mine', as: :mine
 end
