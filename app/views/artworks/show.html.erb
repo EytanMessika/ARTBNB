@@ -1,36 +1,97 @@
-<h1 class="text-center"><%= @artwork.name %></h1>
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%), url(<%= @artwork.photo %>); height: 50vh; background-position: center;">
+</div>
+
 
 <% if current_user == @artwork.user %>
-	<%= link_to "Edit artwork", edit_artwork_path(@artwork), class: "btn btn-primary" %>
-	<%= link_to "Delete artwork", artwork_path(@artwork), method: :delete, class: "btn btn-danger" %>
+<%= link_to "Edit artwork", edit_artwork_path(@artwork), class: "btn btn-primary" %>
+<%= link_to "Delete artwork", artwork_path(@artwork), method: :delete, class: "btn btn-danger" %>
 <% end %>
 
+<div class="header-flat">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-sm-offset-1">
+				<h1 class="text-center"><%= @artwork.name %></h1>
+				<p><%= @artwork.artist_name %></p>
+				<p><%= @artwork.category %></p>
+				<p><%= @artwork.price %></p>
+				<p><%= @artwork.dimensions %></p>
+				<%= cl_image_tag @artwork.photo,
+				width: 400, height: 600, crop: :fill %>
+			</div>
 
-<div class="container">
-	<div class="row">
-		<div class="col-xs-8">
-			<p><%= @artwork.artist_name %></p>
-			<p><%= @artwork.category %></p>
-			<p><%= @artwork.price %></p>
-			<p><%= @artwork.dimensions %></p>
-			<%= cl_image_tag @artwork.photo,
-			width: 400, height: 600, crop: :fill %>
-		</div>
-		<div class="col-xs-4">
-
-			<div class="booking-form">
-				<div class="booking-price-area">
-					<div class="row">
-						<div class="col-xs-8">
-							<span class="booking-price"><%= @artwork.price %>€</span>
+			<div class="col-xs-12 col-sm-4">
+				<div class="booking-card">
+					<div class="booking-price-area">
+						<div class="row">
+							<div class="col-xs-8">
+								<span class="booking-price"><%= @artwork.price %>€</span>
+							</div>
+							<div class="col-xs-4">
+								<span class= "price-frequency">per day</span>
+							</div>
 						</div>
-						<div class="col-xs-4"></div>
-						<span class= "price-frequency">per day</span>
+					</div>
+					<div class="booking-form">
+						<h3>Book it</h3>
+						<%= render 'artworks/form_bookings' %>
 					</div>
 				</div>
-				<h3>Book it</h3>
-				<%= render 'artworks/form_bookings' %>
 			</div>
 		</div>
 	</div>
+</div>
+
+<div class="flat-description">
+	<div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        <h2>About this piece of art</h2>
+        <p>
+          Reviews from previous bookings
+        </p>
+
+        <hr>
+        <div class="row" id="flat-data">
+          <div class="col-xs-12 col-sm-2">
+            The Space
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <ul class="list-unstyled">
+              <li>Accommodates:  <strong>2</strong></li>
+              <li>Bathrooms:  <strong>1</strong></li>
+              <li>Bed type:  <strong>Real Bed</strong></li>
+              <li>Bedrooms:  <strong>1</strong></li>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <ul class="list-unstyled">
+              <li>Beds: <strong>1</strong></li>
+              <li>Property type: <strong>Apartment</strong></li>
+              <li>Room type: <strong>Entire home/apt</strong></li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+        <div class="row" id="flat-data">
+          <div class="col-xs-12 col-sm-2">
+            Amenities
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <ul class="list-unstyled">
+              <li><i class="fa fa-cutlery"></i><strong>Kitchen</strong></li>
+              <li><i class="fa fa-wifi"></i><strong>Wifi</strong></li>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <ul class="list-unstyled">
+              <li><i class="fa fa-desktop"></i><strong>TV</strong></li>
+              <li><i class="fa fa-glass"></i><strong>Welcome drink</strong></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </div>
