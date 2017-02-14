@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get 'mine', to: 'artworks#mine', as: :mine
   get '/contact' => 'pages#contact'
   get '/about' => 'pages#about'
+  get '/dashboard', to: 'dashboard#index'
 end

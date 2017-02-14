@@ -12,6 +12,8 @@
 
 body {
   position: relative;
+  margin: 0;
+  font-family: Open-sans, sans-serif;
 }
 
 // Backgrounds
@@ -26,4 +28,18 @@ body {
 }
 .bg-dark-blue {
   background: #3b5998;
+}
+
+h1, h2, h3 {
+  font-family: Raleway, Helvetica, sans-serif;
+}
+a {
+  text-decoration: none;
+}
+
+.list-inline li {
+  display: inline-block;
+}
+.list-inline {
+  list-style: none;
 }
