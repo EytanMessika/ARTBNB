@@ -70,21 +70,15 @@
 
 /* Navbar search form */
 .navbar-wagon-search {
-  flex: 0 1 300px;
-  display: flex;
-  justify-content: flex-end;
+  margin: 0 auto;
   padding: 0 10px;
   position: relative;
+  margin: 0 auto
 }
 .navbar-wagon-search-btn {
-  line-height: 40px;
   color: #E6E6E6;
   border: none;
   background: transparent;
-  position: absolute;
-  right: 14px;
-  top: -2px;
-  z-index: 1;
 }
 .navbar-wagon-search-input {
   flex: 0 1 300px;

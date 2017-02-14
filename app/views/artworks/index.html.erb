@@ -1,7 +1,21 @@
 <h1 class="intro" > A <strong>  unique masterpiece </strong> is waiting for you. Book it now. </h1>
 
-
-<h3 class="search text-center">INSERT SEARCH BAR</h3>
+<div class="text-center">
+  <form action="" class="navbar-wagon-search">
+    <input type="date" name="start" class="navbar-wagon-search-input">
+    <input type="date" name="end" class="navbar-wagon-search-input">
+    <select name="Category" class="navbar-wagon-search-input">
+      <option value="Painting" >Painting</option>
+      <option value="Sculpture">Scultpure</option>
+      <option value="Photography">Photography</option>
+      <option value="Icons">Icons</option>
+      <option value="Drawing">Drawing</option>
+    </select>
+    <button type="submit" class="navbar-wagon-search-input navbar-wagon-search-btn">
+      <i class="fa fa-search"></i>
+    </button>
+  </form>
+</div>
 
 <br> <br> <br> <br>
 
@@ -10,14 +24,21 @@
   <% Artwork.all.each do |artwork| %>
       <div class="col-xs-12 col-sm-4">
         <div class="card">
-          <div class="card-category"></div>
+          <div class="card-category">
+            <p> <%= artwork.category %> </p>
+          </div>
           <div class="card-description">
               <h3><%= artwork.name %></h3>
-              <p> <%= artwork.artist_name %> </p>
-              <p> <%= artwork.category %> </p>
-              <p> <%= artwork.price %> </p>
-              <p> <%= artwork.dimensions %> </p>
-              <%= link_to 'See more', artwork, {class: "btn btn-secondary"} %>
+              <h5> <%= artwork.artist_name %> </h5>
+          </div>
+          <div class="card-price">
+            <p> <%= artwork.price %> € / day</p>
+          </div>
+          <div class="card-photo">
+              <%= cl_image_tag artwork.photo, height: 100, width: 130, crop: :fill %>
+          </div>
+          <div class="card-link">
+          <%= link_to '', artwork, {class: "btn-card-link"} %>
           </div>
         </div>
       </div>
