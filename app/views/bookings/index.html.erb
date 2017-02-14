@@ -1,1 +1,19 @@
-<h1>bookings#index</h1>
+<div class="container-fluid">
+  <div class="row">
+    <% @bookins.each do |booking| %>
+      <div class="col-xs-12 col-md-4">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('placeholder.jpg');">
+          <div class="card-description">
+            <h2> <%= booking.artwork.name %> </h2>
+            <p> Owner: <%= booking.artwork.user.first_name %> </p>
+            <p> Starting date:: <%= booking.starts_on %> </p>
+            <p> Ending date: <%= booking.ends_on %> </p>
+            <p> Type: <%= booking.artwork.category %> </p>
+            <p> Price: <%= booking.artwork.price %> € </p>
+          </div>
+          <%= link_to "", artwork_path(booking.artwork), class: "card-link" %>
+        </div>
+      </div>
+    <% end -%>
+  </div>
+</div>
