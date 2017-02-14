@@ -11,6 +11,8 @@ gem 'redis'
 
 gem 'omniauth-facebook'
 
+gem 'cloudinary', '1.1.0'
+gem 'carrierwave'
 
 gem 'sass-rails'
 gem 'jquery-rails'
@@ -19,6 +21,7 @@ gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
+
 
 group :development, :test do
   gem 'binding_of_caller'
