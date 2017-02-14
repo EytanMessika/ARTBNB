@@ -10,7 +10,7 @@ class BookingsController < ApplicationController
     @booking.artwork = @artwork
     @booking.user = current_user
     if @booking.save
-      redirect_to bookings_path
+      redirect_to artwork_bookings_path(@artwork)
     else
       render "artworks/show"
     end

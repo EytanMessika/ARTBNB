@@ -1,6 +1,8 @@
-<%= simple_form_for [@booking] do |f| %>
-  <%= f.input :starts_on, as: :date %>
-  <%= f.input :ends_on, as: :date %>
-  <%= f.input :price %>
-  <%= f.submit "Submit", class: "btn btn-primary" %>
+<%= simple_form_for [@artwork, @booking] do |f| %>
+	<%= f.error_notification %>
+
+	<%= f.input :starts_on, as: :date %>
+	<%= f.input :ends_on, as: :date %>
+	<%= f.input :price, as: :hidden,  value:  %>
+	<%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>
