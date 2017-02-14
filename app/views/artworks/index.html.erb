@@ -1,18 +1,26 @@
 <h1 class="intro" > A <strong>  unique masterpiece </strong> is waiting for you. Book it now. </h1>
 
-<div class="text-center">
-  <form action="" class="navbar-wagon-search">
-    <input type="date" name="start" class="navbar-wagon-search-input">
-    <input type="date" name="end" class="navbar-wagon-search-input">
-    <select name="Category" class="navbar-wagon-search-input">
+<div class="search-container">
+  <form action="" class="form-inline">
+    <input type="text" class="input-daterange input-group navbar-wagon-search-input" name="booking[starts_on]" value="Start Date" />
+    <input type="text" class="navbar-wagon-search-input input-daterange input-group" name="booking[ends_on]"  value="End Date" />
+    <select name="Category" class="navbar-wagon-search-input form-control">
+      <option value="Painting" >Select the category</option>
       <option value="Painting" >Painting</option>
       <option value="Sculpture">Scultpure</option>
       <option value="Photography">Photography</option>
       <option value="Icons">Icons</option>
       <option value="Drawing">Drawing</option>
     </select>
-    <button type="submit" class="navbar-wagon-search-input navbar-wagon-search-btn">
-      <i class="fa fa-search"></i>
+     <select name="Budget" class="navbar-wagon-search-input form-control">
+      <option value="Painting" >Select your budget</option>
+      <option value="Painting" >100</option>
+      <option value="Sculpture">250</option>
+      <option value="Photography">500</option>
+      <option value="Icons">1000</option>
+      <option value="Drawing">2000+</option>
+    </select>
+    <button type="submit" class="navbar-wagon-search-input navbar-wagon-search-btn"> <i class="fa fa-search"></i>
     </button>
   </form>
 </div>
