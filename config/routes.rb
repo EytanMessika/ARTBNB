@@ -7,4 +7,6 @@ Rails.application.routes.draw do
     resources :bookings
   end
   get 'mine', to: 'artworks#mine', as: :mine
+  get '/contact' => 'pages#contact'
+  get '/about' => 'pages#about'
 end
