@@ -1,0 +1,86 @@
+<div class="container text-center">
+  <h1>My dashboard</h1>
+</div>
+<div class="container text-center">
+  <div class="tabs">
+    <a class="tab active" href="#">
+      <h3>My Artworks</h3>
+    </a>
+    <a class="tab" href="#">
+      <h3>My Bookings</h3>
+    </a>
+    <a class="tab" href="#">
+      <h3>Bookings on my Artworks</h3>
+    </a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="list">
+    <% if @artworks != [] %>
+      <% @artworks.each do |artwork| %>
+        <div class="product">
+          <%= cl_image_tag(artwork.photo, width: 400, height: 600, crop: :fill, class:"product-image") %>
+          <div class='product-body'>
+            <h3> <%= artwork.name %> </h3>
+            <p> <%= artwork.artist_name %></p>
+            <p> <%= artwork.price %> € per day</p>
+          </div>
+        </div>
+      <% end -%>
+    <% else %>
+      <div class="product">
+        <div class='product-body'>
+          <h3> No artworks listed yet.</h3>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <p>Bookings:</p>
+
+  <div class="list">
+  <% if @bookings != [] %>
+    <% @bookings.each do |booking| %>
+      <div class="product">
+      <%= cl_image_tag(booking.artwork.photo, width: 400, height: 600, crop: :fill, class:"product-image") %>
+        <div class='product-body'>
+          <h3> <%= booking.artwork.name %> </h3>
+          <p> Starts on: <%= booking.starts_on %> </p>
+          <p> Ends on: <%= booking.ends_on %> </p>
+          <p> Total price: <%= booking.price %> €</p>
+        </div>
+      </div>
+    <% end -%>
+  <% else %>
+    <div class="product">
+      <div class='product-body'>
+        <h3> No bookings yet.</h3>
+      </div>
+    </div>
+  <% end %>
+  </div>
+
+  <p>Bookings on my stuff:</p>
+
+  <div class="list">
+  <% if @bookings_on_my_artworks != [] %>
+    <% @bookings_on_my_artworks.each do |bookings_on_my_artworks| %>
+      <div class="product">
+      <%= cl_image_tag(bookings_on_my_artworks.artwork.photo, width: 400, height: 600, crop: :fill, class:"product-image") %>
+        <div class='product-body'>
+          <h3> <%= bookings_on_my_artworks.artwork.name %> </h3>
+          <p> Starts on: <%= bookings_on_my_artworks.starts_on %>; Ends on: <%= bookings_on_my_artworks.ends_on %> </p>
+          <p> Total price: <%= bookings_on_my_artworks.price %> €</p>
+          <p> Status: </p>
+        </div>
+      </div>
+    <% end -%>
+  <% else %>
+    <div class="product">
+      <div class='product-body'>
+        <h3> No bookings on my artworks yet.</h3>
+      </div>
+    </div>
+  <% end %>
+  </div>
