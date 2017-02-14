@@ -1,4 +1,6 @@
 <h1 class="text-center"><%= @artwork.name %></h1>
+<%= link_to "Edit artwork", edit_artwork_path(@artwork), class: "btn btn-primary" %>
+<%= link_to "Delete artwork", artwork_path(@artwork), method: :delete, class: "btn btn-danger" %>
 <div class="container">
 	<div class="row">
 		<div class="col-xs-8">
@@ -6,14 +8,24 @@
 			<p><%= @artwork.category %></p>
 			<p><%= @artwork.price %></p>
 			<p><%= @artwork.dimensions %></p>
-      <%= cl_image_tag @artwork.photo,
-            width: 400, height: 600, crop: :fill %>
+			<%= cl_image_tag @artwork.photo,
+			width: 400, height: 600, crop: :fill %>
 		</div>
 		<div class="col-xs-4">
+
 			<div class="booking-form">
-			<h3>Book it</h3>
-						<%= render 'artworks/form_bookings' %>
+				<div class="booking-price-area">
+					<div class="row">
+						<div class="col-xs-8">
+							<span class="booking-price"><%= @artwork.price %>€</span>
 						</div>
+						<div class="col-xs-4"></div>
+						<span class= "price-frequency">per day</span>
+					</div>
+				</div>
+				<h3>Book it</h3>
+				<%= render 'artworks/form_bookings' %>
+			</div>
 		</div>
 	</div>
 </div>

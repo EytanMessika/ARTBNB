@@ -1,10 +1,10 @@
 <%= simple_form_for [@artwork, @booking] do |f| %>
 	<%= f.error_notification %>
-
-	<%= f.input :starts_on, as: :date %>
-	<%= f.input :ends_on, as: :date %>
-	<label for="">Price:</label>
-	<p class= "total-price"><%= @artwork.price %>€ / day</p>
+	<div class="input-daterange input-group" id="datepicker">
+		<input type="text" class="input-sm form-control" name="booking[starts_on]" />
+		<span class="input-group-addon">to</span>
+		<input type="text" class="input-sm form-control" name="booking[ends_on]" />
+	</div>
 	<%= f.input :price, as: :hidden %>
 	<%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>
