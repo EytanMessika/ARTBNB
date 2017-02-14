@@ -10,10 +10,11 @@
             <p> Ending date: <%= booking.ends_on %> </p>
             <p> Type: <%= booking.artwork.category %> </p>
             <p> Price: <%= booking.price %> € </p>
+            <p> Status: <%= booking.status %> </p>
           </div>
           <%= link_to "", artwork_path(booking.artwork), class: "card-link" %>
         </div>
       </div>
-    <% end -%>
+    <% end %>
   </div>
 </div>
