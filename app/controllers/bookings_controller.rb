@@ -17,10 +17,19 @@ class BookingsController < ApplicationController
     end
   end
 
+  def accept_booking
+    @booking = Booking.find(params[:id])
+    @booking.update(status: "Confirmed")
+  end
+
+  def refuse_booking
+    
+  end
+
   private
 
   def booking_params
-    params.require(:booking).permit(:starts_on, :ends_on)
+    params.require(:booking).permit(:starts_on, :ends_on, :price, :user_id, :artwork_id, :status)
   end
 
   def price_calculation(starts_on, ends_on, daily_price)
