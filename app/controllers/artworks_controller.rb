@@ -20,6 +20,25 @@ class ArtworksController < ApplicationController
     end
   end
 
+  def edit
+    @artwork = Artwork.find(params[:id])
+  end
+
+  def update
+    @artwork = Artwork.find(params[:id])
+    if @artwork.update(artwork_params)
+      redirect_to artwork_path(@artwork)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @artwork = Artwork.find(params[:id])
+    @artwork.destroy
+    redirect_to mine_path
+  end
+
   def mine
     @artworks = Artwork.where(user: current_user)
   end

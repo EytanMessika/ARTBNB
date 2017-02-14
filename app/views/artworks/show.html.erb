@@ -1,4 +1,6 @@
 <h1 class="text-center"><%= @artwork.name %></h1>
+<%= link_to "Edit artwork", edit_artwork_path(@artwork), class: "btn btn-primary" %>
+<%= link_to "Delete artwork", artwork_path(@artwork), method: :delete, class: "btn btn-danger" %>
 <div class="container">
 	<div class="row">
 		<div class="col-xs-8">
