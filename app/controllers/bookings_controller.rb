@@ -14,11 +14,11 @@ class BookingsController < ApplicationController
     else
       render "artworks/show"
     end
-	end
+  end
 
-	private
+  private
 
-	def booking_params
+  def booking_params
     params.require(:booking).permit(:starts_on, :ends_on, :price)
   end
 end
