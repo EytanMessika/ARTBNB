@@ -13,6 +13,20 @@
   z-index: 50;
 }
 
+.logo-name {
+  text-decoration: none
+}
+
+#logo-name {
+  font-size: 20px;
+  text-decoration: none
+}
+
+.logo-name:hover {
+  color: white;
+  text-decoration: none
+}
+
 /* Optional class to fix the navbar on top */
 .navbar-wagon-fixed {
   position: fixed;
@@ -68,26 +82,25 @@
   border-color: #ac2626;
 }
 
+.search-container {
+  display: flex;
+  justify-content: center;
+  max-width: 400px;
+  margin: 0 auto
+}
+
 /* Navbar search form */
 .navbar-wagon-search {
-  flex: 0 1 300px;
-  display: flex;
-  justify-content: flex-end;
-  padding: 0 10px;
   position: relative;
+  margin: 0 auto
 }
+
 .navbar-wagon-search-btn {
-  line-height: 40px;
   color: #E6E6E6;
   border: none;
   background: transparent;
-  position: absolute;
-  right: 14px;
-  top: -2px;
-  z-index: 1;
 }
 .navbar-wagon-search-input {
-  flex: 0 1 300px;
   transition: all 0.15s ease;
   line-height: 40px;
   font-weight: lighter;
@@ -97,6 +110,7 @@
   padding: 0 10px;
   font-size: 14px;
   outline: none;
+  margin: 10px
 }
 .navbar-wagon-search-input:focus  {
   border: 1px solid #CCCCCC;
