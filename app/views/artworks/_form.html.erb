@@ -1,0 +1,8 @@
+<%= simple_form_for [@artwork] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :artist_name %>
+  <%= f.input :category %>
+  <%= f.input :dimensions %>
+  <%= f.input :price %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>
