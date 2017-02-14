@@ -11,6 +11,7 @@ gem 'redis'
 
 gem 'omniauth-facebook'
 
+gem 'cloudinary', '1.1.0'
 gem 'carrierwave'
 
 gem 'sass-rails'
