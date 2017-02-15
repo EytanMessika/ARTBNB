@@ -14,6 +14,8 @@
       <div class="navbar-wagon-item">
         <div class="dropdown">
 
+      <%= link_to "Find an artwork", artworks_path, class: "btn btn-navbar" %>
+
        <%= link_to (current_user.artworks.empty? ? "Become a collectioner" : "Add a piece of art"), new_artwork_path, class: "btn btn-navbar" %>
 
         <% avatar_url = current_user.facebook_picture_url || "https://galerie.alittlemarket.com/galerie/sell/2626440/peintures-tableau-acrylique-abstrait-moderne-19314354-20161029-14541891a7-f00a9_big.jpg" %>
