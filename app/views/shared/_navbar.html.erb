@@ -1,7 +1,7 @@
 <div class="navbar-wagon">
   <!-- Logo -->
-  <%= link_to artworks_path, class: "navbar-wagon-brand logo-name" do %>
-    <h2 id="logo-name" >You n' Art.</h2>
+  <%= link_to root_path do %>
+  <%= image_tag "/you_n_art_white.png", id: "logo" %>
   <% end %>
 
   <!-- Right Navigation -->
@@ -37,6 +37,7 @@
     <% else %>
 
       <!-- Login text link -->
+      <%= link_to t(".sign_up", default: "Join our collectionners"), new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
     <% end %>
