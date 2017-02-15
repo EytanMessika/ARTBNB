@@ -8,7 +8,7 @@
       <option value="Painting" >Painting</option>
       <option value="Sculpture">Scultpure</option>
       <option value="Photography">Photography</option>
-      <option value="Icons">Icons</option>
+      <option value="Icons">Icon</option>
       <option value="Drawing">Drawing</option>
     </select>
 
@@ -25,9 +25,9 @@
 <div class="container">
   <div class="row">
   <% Artwork.all.each do |artwork| %>
-  <div class="col-xs-12  ">
+  <div class="col-xs-12 col-md-4 col-sm-6 ">
         <div class="card">
-          <div class="card-category">
+          <div id="card-category">
             <p> <%= artwork.category %> </p>
           </div>
           <div class="card-description">
@@ -38,7 +38,7 @@
             <p> <%= artwork.price %> € / day</p>
           </div>
           <div class="card-photo">
-              <%= cl_image_tag artwork.photo, height: 100, width: 130, crop: :fill %>
+              <%= cl_image_tag artwork.photo, height: 110, width: 150, crop: :fill %>
           </div>
              <div class="card-link">
             <%= link_to '', artwork, {class: "btn-card-link"} %>
