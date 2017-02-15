@@ -14,7 +14,7 @@ class ArtworksController < ApplicationController
     @artwork = Artwork.new(artwork_params)
     @artwork.user = current_user
     if @artwork.save
-      redirect_to mine_path
+      redirect_to dashboard_path
     else
       render :new
     end
