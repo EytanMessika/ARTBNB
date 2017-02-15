@@ -91,7 +91,13 @@
   color: #E6E6E6;
   z-index: 1000;
 }
-.product-controls a:hover {
+a.accept-green:hover {
+  color: green !important
+}
+a.refuse-red:hover {
+  color: #D3473C !important
+}
+a.control-hover:hover {
   color: #D3473C !important
 }
 .product-controls-hidden a {
@@ -112,4 +118,3 @@ li a {
 
 // .product:hover .product-upvote { transform: scale(1.2) }
 .product:hover .product-controls-hidden a { color: #E6E6E6 }
-.product-upvote:hover .product-arrow { border-bottom: 9px solid #5898f1 }
