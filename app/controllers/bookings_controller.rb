@@ -1,14 +1,15 @@
 class BookingsController < ApplicationController
 
-	def index
-		@bookings = Booking.where(user: current_user)
-	end
+  def index
+    @bookings = Booking.where(user: current_user)
+  end
 
-	def create
-		@artwork = Artwork.find(params[:artwork_id])
+  def create
+    @artwork = Artwork.find(params[:artwork_id])
     @booking = Booking.new(booking_params)
     @booking.artwork = @artwork
     @booking.user = current_user
+    @booking.status = "Pending"
     @booking.price = price_calculation(@booking.starts_on, @booking.ends_on, @artwork.price)
     if @booking.save
       redirect_to dashboard_path
@@ -19,11 +20,16 @@ class BookingsController < ApplicationController
 
   def accept_booking
     @booking = Booking.find(params[:id])
-    @booking.update(status: "Confirmed")
+    @booking.status = "Confirmed"
+    @booking.save
+    redirect_to dashboard_path
   end
 
   def refuse_booking
-    
+    @booking = Booking.find(params[:id])
+    @booking.status = "Refused"
+    @booking.save
+    redirect_to dashboard_path
   end
 
   private
