@@ -47,6 +47,7 @@
   <% if @bookings != [] %>
     <% @bookings.each do |booking| %>
       <div class="product">
+        <%= link_to "", artwork_path(booking.artwork), class:"product-link"  %>
         <div class="photo-div">
           <%= cl_image_tag(booking.artwork.photo, width: 400, height: 600, crop: :limit, class:"product-image") %>
         </div>
@@ -71,15 +72,16 @@
 <div class="tab-content hidden" id="bookings_on_my_artworks">
   <div class="list">
   <% if @bookings_on_my_artworks != [] %>
-    <% @bookings_on_my_artworks.each do |bookings_on_my_artworks| %>
+    <% @bookings_on_my_artworks.each do |booking_on_my_artworks| %>
       <div class="product">
+        <%= link_to "", artwork_path(booking_on_my_artworks.artwork), class:"product-link"  %>
         <div class="photo-div">
-          <%= cl_image_tag(bookings_on_my_artworks.artwork.photo, width: 400, height: 600, crop: :limit, class:"product-image") %>
+          <%= cl_image_tag(booking_on_my_artworks.artwork.photo, width: 400, height: 600, crop: :limit, class:"product-image") %>
         </div>
         <div class='product-body'>
-          <h3> <%= bookings_on_my_artworks.artwork.name %> </h3>
-          <p> Starts on: <%= bookings_on_my_artworks.starts_on %>; Ends on: <%= bookings_on_my_artworks.ends_on %> </p>
-          <p> Total price: <%= bookings_on_my_artworks.price %> €</p>
+          <h3> <%= booking_on_my_artworks.artwork.name %> </h3>
+          <p> Starts on: <%= booking_on_my_artworks.starts_on %>; Ends on: <%= booking_on_my_artworks.ends_on %> </p>
+          <p> Total price: <%= booking_on_my_artworks.price %> €</p>
           <p> Status: </p>
         </div>
       </div>
