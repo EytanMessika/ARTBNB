@@ -95,12 +95,7 @@
   border-color: #ac2626;
 }
 
-.search-container {
-  display: flex;
-  justify-content: center;
-  max-width: 400px;
-  margin: 0 auto
-}
+
 
 /* Navbar search form */
 .navbar-wagon-search {
@@ -115,7 +110,6 @@
 }
 .navbar-wagon-search-input {
   transition: all 0.15s ease;
-  line-height: 40px;
   font-weight: lighter;
   color: #666666;
   border: 1px solid #E6E6E6;
@@ -123,7 +117,7 @@
   padding: 0 10px;
   font-size: 14px;
   outline: none;
-  margin: 10px
+  margin: 20px
 }
 .navbar-wagon-search-input:focus  {
   border: 1px solid #CCCCCC;
