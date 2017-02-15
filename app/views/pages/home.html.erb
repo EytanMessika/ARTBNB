@@ -1,7 +1,7 @@
-<div class="banner" style="background-image: url('<%= image_path("background.jpg")%>');">
+<div class="banner" style="background-image: linear-gradient(135deg, rgba(50,50,50,0.3) 5%, rgba(50,50,50,0.7) 57%), url('<%= image_path("background.jpg")%>');">
   <div class="banner-content">
-    <h1>You n' Art. </h1>
-    <h3>Rent a masterpiece for your next events. </h3>
-    <%= link_to 'Take a look', artworks_path, {class: "btn change-btn-color margined "} %>
+    <h1 class="banner-title">You n' Art. </h1>
+    <h3>Rent a <span class="minted">unique masterpiece</span> for your next <span class="minted">events.</span> </h3>
+    <%= link_to 'Take a look', artworks_path, {class: "btn btn-home"} %>
   </div>
 </div>
