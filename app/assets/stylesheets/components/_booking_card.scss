@@ -39,23 +39,3 @@
     padding: 3px 0;
     font-size: 14px;
 }
-
-.btn-booking {
-    width: 99.5%;
-    margin-top: 15px; 
-    color: #4C4C4C;
-    border: 1px solid #929395;
-    padding: 10px 15px;
-    border-radius: 50px;
-    font-weight: lighter;
-    opacity: 0.8;
-    transition: all 0.2s ease;
-    &:hover {
-        background-color: #3c3f40;
-        opacity: 0.9;
-        text-decoration: none;
-        color: white;
-        border-color: #3c3f40;
-    }
-}
-
