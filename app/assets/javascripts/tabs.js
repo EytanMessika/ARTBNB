@@ -1,16 +1,10 @@
-$(document).ready(function() {
-    $('.tab').click(
-      function(){
+$(function(){
 
-        $('.active').removeClass('active');
+  $(".tab").on("click", function(e){
+    $(".tab").removeClass('active');
+    $(this).addClass('active');
+    $(".tab-content").addClass('hidden');
+    $($(this).data('target')).removeClass('hidden');
+  });
 
-        $(this).addClass('active');
-
-        $('.tab-content').addClass("hidden");
-
-        var content = $('.active').data("target");
-
-        $(content).removeClass("hidden");
-
-      });
 });

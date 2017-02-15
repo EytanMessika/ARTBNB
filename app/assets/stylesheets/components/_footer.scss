@@ -1,0 +1,41 @@
+#footer {
+  position: relative;
+  width: 100%;
+  display: flex;
+}
+#footer img {
+  position: absolute;
+  z-index: 1000;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70px;
+  top: 20px;
+  right: 45px;
+}
+#footer-content {
+  background: $black;
+  color: $lightgrey;
+  position: absolute;
+  width: 100%;
+}
+#footer-content p {
+  margin-top: 12px;
+}
+#footer-content ul {
+  margin-top: 10px;
+}
+#footer-content a {
+  color: $lightgrey;
+  font-size: 30px;
+  text-decoration: none;
+  transition: color 0.5s ease;
+}
+#footer-content a:hover{
+  color: $mint;
+}
+
+#footer-content i {
+  text-align: center;
+  padding: 0 14px;
+}
