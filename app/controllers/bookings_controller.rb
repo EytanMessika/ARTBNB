@@ -11,7 +11,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.price = price_calculation(@booking.starts_on, @booking.ends_on, @artwork.price)
     if @booking.save
-      redirect_to artwork_bookings_path(@artwork)
+      redirect_to dashboard_path
     else
       render "artworks/show"
     end

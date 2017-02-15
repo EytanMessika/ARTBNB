@@ -3,54 +3,26 @@
 </div>
 <div class="container text-center">
   <div class="tabs">
-    <a class="tab active" data-target="#artworks">
-      <h3>My Artworks</h3>
+    <a class="tab active" data-target="#bookings">
+      <h3>MY BOOKINGS</h3>
     </a>
-    <a class="tab" data-target="#bookings">
-      <h3>My Bookings</h3>
+    <a class="tab" data-target="#artworks">
+      <h3>MY ARTWORKS</h3>
     </a>
     <a class="tab" data-target="#bookings_on_my_artworks">
-      <h3>Bookings on my Artworks</h3>
+      <h3>BOOKINGS ON MY ARTWORKS</h3>
     </a>
   </div>
 </div>
 
 <div class="container">
-  <div class="tab-content" id="artworks">
-    <div class="list">
-      <div class="button-div">
-        <%= link_to "List a new artwork", new_artwork_path, class: "btn btn-primary" %>
-      </div>
-      <% if @artworks != [] %>
-        <% @artworks.each do |artwork| %>
-          <div class="product">
-            <%= link_to "", artwork_path(artwork), class:"product-link"  %>
-            <div class="photo-div">
-              <%= cl_image_tag(artwork.photo, width: 400, height: 600, crop: :limit, class:"product-image") %>
-            </div>
-            <div class='product-body'>
-              <h3> <%= artwork.name %> </h3>
-              <p> <%= artwork.artist_name %></p>
-              <p> <%= artwork.price %> € per day</p>
-            </div>
-          </div>
-        <% end -%>
-      <% else %>
-        <div class="product">
-          <div class='product-body'>
-            <h3> No artworks listed yet.</h3>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
 
-<div class="tab-content hidden" id="bookings">
-  <div class="list">
-  <% if @bookings != [] %>
-    <% @bookings.each do |booking| %>
+  <div class="tab-content hidden" id="bookings">
+    <div class="list">
+      <% if @bookings != [] %>
+      <% @bookings.each do |booking| %>
+
       <div class="product">
-        <%= link_to "", artwork_path(booking.artwork), class:"product-link"  %>
         <div class="photo-div">
           <%= cl_image_tag(booking.artwork.photo, width: 400, height: 600, crop: :limit, class:"product-image") %>
         </div>
@@ -60,24 +32,61 @@
           <p> Ends on: <%= booking.ends_on %> </p>
           <p> Total price: <%= booking.price %> €</p>
         </div>
+        <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
+          <li><a href=""><i class="fa fa-ban" aria-hidden="true"></i> cancel</a></li>
+        </ul>
       </div>
-    <% end -%>
-  <% else %>
-    <div class="product">
-      <div class='product-body'>
-        <h3> No bookings yet.</h3>
-      </div>
-    </div>
-  <% end %>
-  </div>
-</div>
-
-<div class="tab-content hidden" id="bookings_on_my_artworks">
-  <div class="list">
-  <% if @bookings_on_my_artworks != [] %>
-    <% @bookings_on_my_artworks.each do |booking_on_my_artworks| %>
+      <% end -%>
+      <% else %>
       <div class="product">
-        <%= link_to "", artwork_path(booking_on_my_artworks.artwork), class:"product-link"  %>
+        <div class='product-body'>
+          <h3> No bookings yet.</h3>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="tab-content" id="artworks">
+    <div class="list">
+      <div class="button-div">
+        <%= link_to "List a new artwork", new_artwork_path, class: "btn btn-rounded" %>
+      </div>
+      <% if @artworks != [] %>
+      <% @artworks.each do |artwork| %>
+
+
+      <div class="product">
+        <div class="photo-div">
+          <%= cl_image_tag(artwork.photo, width: 400, height: 600, crop: :limit, class:"product-image") %>
+        </div>
+        <div class='product-body'>
+          <h3> <%= artwork.name %> </h3>
+          <p> <%= artwork.artist_name %></p>
+          <p> <%= artwork.price %> € per day</p>
+        </div>
+        <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
+          <li><a href=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit
+            <li><a href=""><i class="fa fa-trash" aria-hidden="true"></i> delete</a></li>
+          </a></li>
+        </ul>
+      </div>
+      <% end -%>
+      <% else %>
+      <div class="product">
+        <div class='product-body'>
+          <h3> No artworks listed yet.</h3>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="tab-content hidden" id="bookings_on_my_artworks">
+    <div class="list">
+      <% if @bookings_on_my_artworks != [] %>
+      <% @bookings_on_my_artworks.each do |booking_on_my_artworks| %>
+      <div class="product">
         <div class="photo-div">
           <%= cl_image_tag(booking_on_my_artworks.artwork.photo, width: 400, height: 600, crop: :limit, class:"product-image") %>
         </div>
@@ -87,15 +96,28 @@
           <p> Total price: <%= booking_on_my_artworks.price %> €</p>
           <p> Status: </p>
         </div>
+        <% if booking_on_my_artworks.status == "Pending" %>
+        <ul class="list-inline product-controls">
+          <li><a href=""><i class="fa fa-ban" aria-hidden="true"></i> confirm</a></li>
+          <li><a href=""><i class="fa fa-ban" aria-hidden="true"></i> refuse</a></li>
+        </ul>
+        <% else %>
+
+        <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
+          <li><a href=""><i class="fa fa-ban" aria-hidden="true"></i> cancel</a></li>
+        </ul>
+        <% end %>
+
       </div>
-    <% end -%>
-  <% else %>
-    <div class="product">
-      <div class='product-div'>
-        <h3> No bookings on my artworks yet.</h3>
+      <% end -%>
+      <% else %>
+      <div class="product">
+        <div class='product-div'>
+          <h3> No bookings on my artworks yet.</h3>
+        </div>
       </div>
+      <% end %>
     </div>
-  <% end %>
   </div>
 </div>
 
