@@ -33,7 +33,7 @@
           <p> Total price: <%= booking.price %> €</p>
         </div>
         <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
-          <li><a href=""><i class="fa fa-ban" aria-hidden="true"></i> cancel</a></li>
+          <li><a href="" class="control-hover"><i class="fa fa-ban" aria-hidden="true"></i> cancel</a></li>
         </ul>
       </div>
       <% end -%>
@@ -66,8 +66,8 @@
           <p> <%= artwork.price %> € per day</p>
         </div>
         <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
-          <li><a href=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit
-            <li><a href=""><i class="fa fa-trash" aria-hidden="true"></i> delete</a></li>
+          <li><a href="" class="control-hover"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit
+            <li><a href="" class="control-hover"><i class="fa fa-trash" aria-hidden="true"></i> delete</a></li>
           </a></li>
         </ul>
       </div>
@@ -94,15 +94,14 @@
           <h3> <%= booking_on_my_artworks.artwork.name %> </h3>
           <p> Starts on: <%= booking_on_my_artworks.starts_on %>; Ends on: <%= booking_on_my_artworks.ends_on %> </p>
           <p> Total price: <%= booking_on_my_artworks.price %> €</p>
-          <p> Status: </p>
+          <p> Status: <%= booking_on_my_artworks.status %></p>
         </div>
-        <% if booking_on_my_artworks.status == "Pending" %>
-        <ul class="list-inline product-controls">
-          <li><a href=""><i class="fa fa-ban" aria-hidden="true"></i> confirm</a></li>
-          <li><a href=""><i class="fa fa-ban" aria-hidden="true"></i> refuse</a></li>
-        </ul>
+        <% if booking_on_my_artworks.status != "Pending" %>
+          <ul class="list-inline product-controls">
+            <li><a href="" class="accept-green"><i class="fa fa-check" aria-hidden="true"></i></i> confirm</a></li>
+            <li><a href="" class="refuse-red"><i class="fa fa-ban" aria-hidden="true"></i> refuse</a></li>
+          </ul>
         <% else %>
-
         <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
           <li><a href=""><i class="fa fa-ban" aria-hidden="true"></i> cancel</a></li>
         </ul>
