@@ -9,4 +9,9 @@ class Artwork < ApplicationRecord
   validates :dimensions, presence: true
   validates :price, presence: true
   validates :photo, presence: true
+
+  def self.search(search)
+    where("category LIKE ?", "%#{search}%")
+  end
+
 end
