@@ -22,12 +22,19 @@
 }
 
 /* Product image */
-.product-image {
-  border-radius: 10px;
+
+.photo-div {
   margin-right: 20px;
   width: 175px;
   height: 100px;
-  clip: rect(100px, 0px, 170px, 0px);
+}
+
+.product-image {
+  border-radius: 10px;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
 }
 
 /* Upvote design */

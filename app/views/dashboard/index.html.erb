@@ -3,47 +3,52 @@
 </div>
 <div class="container text-center">
   <div class="tabs">
-    <a class="tab active" href="#">
+    <a class="tab active" data-target="#artworks">
       <h3>My Artworks</h3>
     </a>
-    <a class="tab" href="#">
+    <a class="tab" data-target="#bookings">
       <h3>My Bookings</h3>
     </a>
-    <a class="tab" href="#">
+    <a class="tab" data-target="#bookings_on_my_artworks">
       <h3>Bookings on my Artworks</h3>
     </a>
   </div>
 </div>
 
 <div class="container">
-  <div class="list">
-    <% if @artworks != [] %>
-      <% @artworks.each do |artwork| %>
+  <div class="tab-content" id="artworks">
+    <div class="list">
+      <% if @artworks != [] %>
+        <% @artworks.each do |artwork| %>
+          <div class="product">
+            <div class="photo-div">
+              <%= cl_image_tag(artwork.photo, width: 400, height: 600, crop: :limit, class:"product-image") %>
+            </div>
+            <div class='product-body'>
+              <h3> <%= artwork.name %> </h3>
+              <p> <%= artwork.artist_name %></p>
+              <p> <%= artwork.price %> € per day</p>
+            </div>
+          </div>
+        <% end -%>
+      <% else %>
         <div class="product">
-          <%= cl_image_tag(artwork.photo, width: 400, height: 600, crop: :fill, class:"product-image") %>
           <div class='product-body'>
-            <h3> <%= artwork.name %> </h3>
-            <p> <%= artwork.artist_name %></p>
-            <p> <%= artwork.price %> € per day</p>
+            <h3> No artworks listed yet.</h3>
           </div>
         </div>
-      <% end -%>
-    <% else %>
-      <div class="product">
-        <div class='product-body'>
-          <h3> No artworks listed yet.</h3>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 
-  <p>Bookings:</p>
-
+<div class="tab-content" id="bookings">
   <div class="list">
   <% if @bookings != [] %>
     <% @bookings.each do |booking| %>
       <div class="product">
-      <%= cl_image_tag(booking.artwork.photo, width: 400, height: 600, crop: :fill, class:"product-image") %>
+        <div class="photo-div">
+          <%= cl_image_tag(booking.artwork.photo, width: 400, height: 600, crop: :limit, class:"product-image") %>
+        </div>
         <div class='product-body'>
           <h3> <%= booking.artwork.name %> </h3>
           <p> Starts on: <%= booking.starts_on %> </p>
@@ -60,14 +65,16 @@
     </div>
   <% end %>
   </div>
+</div>
 
-  <p>Bookings on my stuff:</p>
-
+<div class="tab-content" id="bookings_on_my_artworks">
   <div class="list">
   <% if @bookings_on_my_artworks != [] %>
     <% @bookings_on_my_artworks.each do |bookings_on_my_artworks| %>
       <div class="product">
-      <%= cl_image_tag(bookings_on_my_artworks.artwork.photo, width: 400, height: 600, crop: :fill, class:"product-image") %>
+        <div class="photo-div">
+          <%= cl_image_tag(bookings_on_my_artworks.artwork.photo, width: 400, height: 600, crop: :limit, class:"product-image") %>
+        </div>
         <div class='product-body'>
           <h3> <%= bookings_on_my_artworks.artwork.name %> </h3>
           <p> Starts on: <%= bookings_on_my_artworks.starts_on %>; Ends on: <%= bookings_on_my_artworks.ends_on %> </p>
@@ -78,9 +85,12 @@
     <% end -%>
   <% else %>
     <div class="product">
-      <div class='product-body'>
+      <div class='product-div'>
         <h3> No bookings on my artworks yet.</h3>
       </div>
     </div>
   <% end %>
   </div>
+</div>
+
+
