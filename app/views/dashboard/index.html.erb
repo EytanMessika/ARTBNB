@@ -21,6 +21,7 @@
       <% if @artworks != [] %>
         <% @artworks.each do |artwork| %>
           <div class="product">
+            <%= link_to "", artwork_path(artwork), class:"product-link"  %>
             <div class="photo-div">
               <%= cl_image_tag(artwork.photo, width: 400, height: 600, crop: :limit, class:"product-image") %>
             </div>
@@ -41,7 +42,7 @@
     </div>
   </div>
 
-<div class="tab-content" id="bookings">
+<div class="tab-content hidden" id="bookings">
   <div class="list">
   <% if @bookings != [] %>
     <% @bookings.each do |booking| %>
@@ -67,7 +68,7 @@
   </div>
 </div>
 
-<div class="tab-content" id="bookings_on_my_artworks">
+<div class="tab-content hidden" id="bookings_on_my_artworks">
   <div class="list">
   <% if @bookings_on_my_artworks != [] %>
     <% @bookings_on_my_artworks.each do |bookings_on_my_artworks| %>
