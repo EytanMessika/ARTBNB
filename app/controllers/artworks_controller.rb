@@ -36,7 +36,7 @@ class ArtworksController < ApplicationController
   def destroy
     @artwork = Artwork.find(params[:id])
     @artwork.destroy
-    redirect_to mine_path
+    redirect_to dashboard_path
   end
 
   def mine

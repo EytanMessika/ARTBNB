@@ -18,6 +18,9 @@
 <div class="container">
   <div class="tab-content" id="artworks">
     <div class="list">
+      <div class="button-div">
+        <%= link_to "List a new artwork", new_artwork_path, class: "btn btn-primary" %>
+      </div>
       <% if @artworks != [] %>
         <% @artworks.each do |artwork| %>
           <div class="product">
