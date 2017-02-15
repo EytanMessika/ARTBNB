@@ -2,8 +2,8 @@
   <%= f.input :name %>
   <%= f.input :artist_name %>
   <%= f.input :category, :collection => ["Painting", "Scultpure", "Photography", "Icon", "Drawing"] %>
-  <%= f.input :dimensions %>
-  <%= f.input :price %>
+  <%= f.input :dimensions, placeholder: "Width x height x depth (in cm) " %>
+  <%= f.input :price, placeholder: "In Euros per day" %>
   <%= f.input :photo %>
   <%= f.input :photo_cache, as: :hidden %>
   <%= f.submit "Submit", class: "btn btn-primary" %>
