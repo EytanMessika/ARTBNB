@@ -1,23 +1,32 @@
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%), url(<%= @artwork.photo %>); height: 50vh; background-position: center;">
+<div class="banner margin-bottom" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%), url(<%= @artwork.photo %>); height: 50vh; background-position: center; background-size: cover">
 </div>
 
 
 <% if current_user == @artwork.user %>
+<ul class="list-inline list-margined">
+<li>
 <%= link_to "Edit artwork", edit_artwork_path(@artwork), class: "btn btn-primary" %>
+</li>
+<li>
 <%= link_to "Delete artwork", artwork_path(@artwork), method: :delete, class: "btn btn-danger" %>
+</li>
 <% end %>
-
+</ul>
 <div class="header-flat">
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12 col-sm-6 col-sm-offset-1">
+			<div class="col-xs-12 col-sm-6 col-sm-offset-1 margin-bottom">
 				<h1 class="text-center"><%= @artwork.name %></h1>
-				<p><%= @artwork.artist_name %></p>
-				<p><%= @artwork.category %></p>
-				<p><%= @artwork.price %></p>
-				<p><%= @artwork.dimensions %></p>
+        <div class="text-center">
+				<p> <strong>Artist name :</strong> <%= @artwork.artist_name %></p>
+				<p> <strong>Category :</strong> <%= @artwork.category %></p>
+				<p> <strong>Price : </strong><%= @artwork.price %> € / Day</p>
+				<p class="margin-bottom"><strong> Dimensions : </strong> <%= @artwork.dimensions %></p>
+        </div class = "margin-bottom">
+        <div class="photo-margined">
 				<%= cl_image_tag @artwork.photo,
-				width: 400, height: 600, crop: :fill %>
+				width: 300, height: 300, crop: :fill %>
+        </div>
 			</div>
 
 			<div class="col-xs-12 col-sm-4">
@@ -42,7 +51,7 @@
 	</div>
 </div>
 
-<div class="flat-description">
+<!-- <div class="flat-description">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-sm-10 col-sm-offset-1">
@@ -74,3 +83,5 @@
 			</div>
 		</div>
 	</div>
+  </div>
+ -->
