@@ -67,8 +67,12 @@
         </div>
         <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
           <li><a href=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit
-            <li><a href=""><i class="fa fa-trash" aria-hidden="true"></i> delete</a></li>
           </a></li>
+            <li>
+            <%= link_to destroy_artwork_path, method: :delete do %>
+            <i class="fa fa-trash" aria-hidden="true"></i> delete</a>
+            <% end %>
+            </li>
         </ul>
       </div>
       <% end -%>
