@@ -1,6 +1,7 @@
-<div class="container-fluid">
-  <div class="row">
-    <% @bookings.each do |booking| %>
+<div class="screen-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <% @bookings.each do |booking| %>
       <div class="col-xs-12 col-md-4">
         <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('placeholder.jpg');">
           <div class="card-description">
@@ -15,6 +16,7 @@
           <%= link_to "", artwork_path(booking.artwork), class: "card-link" %>
         </div>
       </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
