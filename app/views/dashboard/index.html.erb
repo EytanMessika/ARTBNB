@@ -104,15 +104,18 @@
             <p> Total price: <%= booking_on_my_artworks.price %> €</p>
             <p> Status: <%= booking_on_my_artworks.status %></p>
           </div>
-          <% if booking_on_my_artworks.status != "Pending" %>
+          <% if booking_on_my_artworks.status == "Pending" %>
           <ul class="list-inline product-controls">
             <li>        
-              <%= link_to "#", class: "accept-green" do %>
-              <i class="fa fa-check" aria-hidden="true"></i></i> confirm
+              <%= link_to artwork_confirm_booking_path(booking_on_my_artworks.artwork, booking_on_my_artworks), method: :patch, class: "accept-green" do %>
+              <i class="fa fa-check" aria-hidden="true"></i> confirm
               <% end %>
-
             </li>
-            <li><a href="" class="refuse-red"><i class="fa fa-ban" aria-hidden="true"></i> refuse</a></li>
+            <li>        
+              <%= link_to artwork_refuse_booking_path(booking_on_my_artworks.artwork, booking_on_my_artworks), method: :put, class: "refuse-red" do %>
+              <i class="fa fa-ban" aria-hidden="true"></i> refuse
+              <% end %>
+            </li>
           </ul>
           <% else %>
           <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
