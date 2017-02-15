@@ -34,7 +34,7 @@
 	<div class="container">
 		<h2 class="text-center">Best artworks of the moment</h2>
 		<div class="row">
-			<% Artwork.all.each do |artwork| %>
+			<% Artwork.first(6).each do |artwork| %>
 			<div class="col-xs-12 col-md-4 col-sm-6 ">
 			<div class="card-white">
 					<div id="card-category">

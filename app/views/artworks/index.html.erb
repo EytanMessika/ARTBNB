@@ -1,50 +1,52 @@
-<h1 class="intro" > A <strong>  unique masterpiece </strong> is waiting for you. Book it now. </h1>
+<div class="wrapper"><h1 class="intro" > A <strong class="minted">  unique masterpiece </strong> is waiting for you. Book it now. </h1>
 
-<div class="search-container">
-  <form action="" class="form-inline" >
+  <div class="search-container">
+    <form action="" class="form-inline" >
 
-    <select name="Category" class="navbar-wagon-search-input form-control">
-      <option value="Select a category" >Select a category</option>
-      <option value="Painting" >Painting</option>
-      <option value="Sculpture">Scultpure</option>
-      <option value="Photography">Photography</option>
-      <option value="Icon">Icon</option>
-      <option value="Drawing">Drawing</option>
-    </select>
+      <select name="Category" class="navbar-wagon-search-input form-control">
+        <option value="Select a category" >Select a category</option>
+        <option value="Painting" >Painting</option>
+        <option value="Sculpture">Scultpure</option>
+        <option value="Photography">Photography</option>
+        <option value="Icon">Icon</option>
+        <option value="Drawing">Drawing</option>
+      </select>
 
-    <input type="text" class="form-control navbar-wagon-search-input" name="budget" placeholder="Enter your budget"/>
+      <input type="text" class="form-control navbar-wagon-search-input" name="budget" placeholder="Enter your budget"/>
 
-    <button type="submit" class="navbar-wagon-search-input form-control"><i class="fa fa-search"></i>
-    </button>
+      <button type="submit" class="navbar-wagon-search-input form-control"><i class="fa fa-search"></i>
+      </button>
 
-  </form>
-</div>
+    </form>
+  </div></div>
 
-<br> <br> <br> <br>
+  <br> <br> <br> <br>
 
-<div class="container">
-  <div class="row">
-  <% Artwork.all.each do |artwork| %>
-  <div class="col-xs-12 col-md-4 col-sm-6 ">
-        <div class="card">
-          <div id="card-category">
-            <p> <%= artwork.category %> </p>
-          </div>
-          <div class="card-description">
+  <div class="wrapper">
+    <div class="container">
+      <div class="row">
+        <% Artwork.all.each do |artwork| %>
+        <div class="col-xs-12 col-md-4 col-sm-6 ">
+          <div class="card">
+            <div id="card-category">
+              <p> <%= artwork.category %> </p>
+            </div>
+            <div class="card-description">
               <h3><%= artwork.name %></h3>
               <h5> <%= artwork.artist_name %> </h5>
-          </div>
-          <div class="card-price">
-            <p> <%= artwork.price %> € / day</p>
-          </div>
-          <div class="card-photo">
-              <%= cl_image_tag artwork.photo, height: 110, width: 150, crop: :fill %>
-          </div>
-             <div class="card-link">
-            <%= link_to '', artwork, {class: "btn-card-link"} %>
             </div>
+            <div class="card-price">
+              <p> <%= artwork.price %> € / day</p>
+            </div>
+            <div class="card-photo">
+              <%= cl_image_tag artwork.photo, height: 110, width: 150, crop: :fill %>
+            </div>
+            <div class="card-link">
+              <%= link_to '', artwork, {class: "btn-card-link"} %>
+            </div>
+          </div>
         </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   </div>
-</div>

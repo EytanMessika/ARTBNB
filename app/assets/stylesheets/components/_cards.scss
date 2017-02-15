@@ -9,6 +9,11 @@
   border-radius: 4px;
   position: relative;
   background-color: $lightgrey;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
+  transition: all 0.2s ease;
+  &:hover {
+    transform: scale(1.02);
+  }
 }
 
 .card-white {
@@ -44,13 +49,14 @@
 }
 
 #card-category {
-  background-color: white;
   border-radius: 3px;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.3);
   color: $mint;
   position: absolute;
   top: 20px;
   left: 15px;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: lighter;
   padding: 2px 5px;
   text-transform: uppercase;
   height: 23px
