@@ -1,6 +1,16 @@
 class ArtworksController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
 
+  def index
+    @artworks = Artwork.all
+    if params[:search]
+      @artworks = Artwork.search(params[:search])
+    else
+      @artworks = Artwork.all
+    end
+  end
+
+
   def show
     @artwork = Artwork.find(params[:id])
     @booking = Booking.new()
