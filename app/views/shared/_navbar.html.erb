@@ -14,7 +14,7 @@
       <div class="navbar-wagon-item">
         <div class="dropdown">
 
-       <%= link_to "Become a collectioner", new_artwork_path, class: "navbar-action btn change-btn-color bordererd" %>
+       <%= link_to "Become a collectioner", new_artwork_path, class: "btn btn-navbar" %>
 
         <% avatar_url = current_user.facebook_picture_url || "http://placehold.it/30x30" %>
         <%= image_tag avatar_url, class: "avatar-square dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
