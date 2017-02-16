@@ -1,45 +1,44 @@
-<div class="screen-footer">
-  <div class="wrapper">
-     <h1 class="intro" > A <strong class="minted">  unique masterpiece </stron> is waiting for you. Book it now. </h1>
-    <div class="search-container">
-      <form action="" class="form-inline" >
-        <%= form_tag(artworks_path, :method => "get", id: "search-form") do %>
-        <%= text_field_tag :search, params[:search], placeholder: "Select a category", class: "navbar-wagon-search-input form-control" %>
-        <%= submit_tag "Search", :name => nil, class: "navbar-wagon-search-input form-control" %>
-        <% end %>
-      </form>
-    </div>
-
-    <br> <br> <br> <br>
-
-    <div class="wrapper">
-      <div class="container">
-        <div class="row">
-          <% @artworks.each do |artwork| %>
-          <div class="col-xs-12 col-md-4 col-sm-6 ">
-            <div class="card">
-              <div id="card-category">
-                <p> <%= artwork.category %> </p>
-              </div>
-              <div class="card-description">
-                <h3><%= artwork.name %></h3>
-                <h5> <%= artwork.artist_name %> </h5>
-              </div>
-              <div class="card-price">
-                <p> <%= artwork.price %> € / day</p>
-              </div>
-              <div class="card-photo">
-                <%= cl_image_tag artwork.photo, height: 110, width: 150, crop: :fill %>
-              </div>
-              <div class="card-link">
-                <%= link_to '', artwork, {class: "btn-card-link"} %>
-              </div>
-
-            </div>
-          </div>
-          <% end %>
-        </div>
-      </div>
-  </div>
+<div class="wrapper">
+ <h1 class="intro" > A <strong class="minted">  unique masterpiece </strong> is waiting for you. Book it now. </h1>
+ <div class="search-container">
+  <form action="" class="form-inline" >
+    <%= form_tag(artworks_path, :method => "get", id: "search-form") do %>
+    <%= select_tag :search, options_for_select(Artwork::ARTWORK_CATEGORY, params[:search]), prompt: "All categories", class: "navbar-wagon-search-input form-control" %>
+    <%= text_field_tag :search_price, params[:search_price], placeholder: "Max daily budget (€)", class: "navbar-wagon-search-input form-control"%>
+    <%= submit_tag "Search", :name => nil, class: "navbar-wagon-search-input form-control" %>
+    <% end %>
+  </form>
 </div>
 
+<br> <br> <br> <br>
+
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <% @artworks.each do |artwork| %>
+      <div class="col-xs-12 col-md-4 col-sm-6 ">
+        <div class="card">
+          <div id="card-category">
+            <p> <%= artwork.category %> </p>
+          </div>
+          <div class="card-description">
+            <h3><%= artwork.name %></h3>
+            <h5> <%= artwork.artist_name %> </h5>
+          </div>
+          <div class="card-price">
+            <p> <%= artwork.price %> € / day</p>
+          </div>
+          <div class="card-photo">
+            <%= cl_image_tag artwork.photo, height: 110, width: 150, crop: :fill %>
+          </div>
+          <div class="card-link">
+            <%= link_to '', artwork, {class: "btn-card-link"} %>
+          </div>
+
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>

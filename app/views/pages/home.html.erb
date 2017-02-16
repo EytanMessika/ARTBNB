@@ -2,10 +2,18 @@
 <div class="banner" style="background-image: linear-gradient(135deg, rgba(50,50,50,0.3) 5%, rgba(50,50,50,0.7) 57%), url('<%= image_path("background.jpg")%>');">
 	<div class="banner-content">
 		<h1 class="banner-title">You n' Art. </h1>
-		<h3>Rent a <span class="minted">unique masterpiece</span> for your next <span class="minted">events.</span> </h3>
-		<%= link_to 'Take a look', artworks_path, {class: "btn btn-home"} %>
+		<h3>Rent a <span class="minted">unique masterpiece</span> for your next <span class="minted">events.</span> </h3> <br>
+     <div class="search-container">
+     <%= form_tag(artworks_path, :method => "get", id: "search-form", class: "form-inline") do %>
+      <%= select_tag :search, options_for_select(Artwork::ARTWORK_CATEGORY, params[:search]), prompt: "All categories", class: "navbar-wagon-search-input form-control" %>
+      <%= text_field_tag :search_price, params[:search_price], placeholder: "Max daily budget (€)", class: "navbar-wagon-search-input form-control"%>
+      <%= submit_tag "Take a look", :name => nil, class: "navbar-wagon-search-input form-control" %>
+    <% end %>
+    </div>
 	</div>
 </div>
+
+
 
 <!-- Features code -->
 <div class="container text-center padded features">
