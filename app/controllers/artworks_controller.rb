@@ -24,7 +24,7 @@ class ArtworksController < ApplicationController
     @artwork = Artwork.new(artwork_params)
     @artwork.user = current_user
     if @artwork.save
-      redirect_to dashboard_path
+      redirect_to dashboard_path(tab: "my-artworks-tab")
     else
       render :new
     end
@@ -37,7 +37,7 @@ class ArtworksController < ApplicationController
   def update
     @artwork = Artwork.find(params[:id])
     if @artwork.update(artwork_params)
-      redirect_to dashboard_path
+      redirect_to dashboard_path(tab: "my-artworks-tab")
     else
       render :edit
     end
@@ -46,7 +46,7 @@ class ArtworksController < ApplicationController
   def destroy
     @artwork = Artwork.find(params[:id])
     @artwork.destroy
-    redirect_to dashboard_path
+    redirect_to dashboard_path(tab: "my-artworks-tab")
   end
 
   def mine

@@ -10,7 +10,7 @@ class BookingsController < ApplicationController
     @booking.artwork = @artwork
     @booking.user = current_user
     @booking.status = "Pending"
-    @booking.price = price_calculation(@booking.starts_on, @booking.ends_on, @artwork.price)
+    @booking.price = price_calculation(@booking.starts_on, @booking.ends_on, @artwork.price) unless @booking.starts_on == nil || @booking.ends_on == nil
     if @booking.save
       redirect_to dashboard_path
     else
@@ -21,27 +21,21 @@ class BookingsController < ApplicationController
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
-    redirect_to dashboard_path
+    redirect_to dashboard_path(tab: "bookings-tab")
   end
 
   def accept_booking
     @booking = Booking.find(params[:id])
     @booking.status = "Confirmed"
     @booking.save
-    respond_to do |format|
-      format.html { redirect_to dashboard_path }
-      format.js  # <-- will render `app/views/reviews/create.js.erb`
-    end
+    redirect_to dashboard_path(tab: "bookings-tab")
   end
 
   def refuse_booking
     @booking = Booking.find(params[:id])
     @booking.status = "Refused"
     @booking.save
-    respond_to do |format|
-      format.html { redirect_to dashboard_path }
-      format.js  # <-- will render `app/views/reviews/create.js.erb`
-    end
+    redirect_to dashboard_path(tab: "bookings-tab")
   end
 
   private
@@ -51,6 +45,6 @@ class BookingsController < ApplicationController
   end
 
   def price_calculation(starts_on, ends_on, daily_price)
-    (ends_on - starts_on + 1) * daily_price
+    (ends_on - starts_on + 1) * daily_price || nil
   end
 end
