@@ -1,8 +1,7 @@
 <div class="tab-content" id="bookings">
   <div class="list">
     <% if @bookings != [] %>
-    <% sorted_by_status = @bookings.sort_by { |hsh| hsh[:status] } %>
-    <% sorted_by_status.sort_by { |hsh| hsh[:starts_on] }.each do |booking| %>
+    <% @bookings.sort { |a, b| [a[:status], a[:starts_on]] <=> [b[:status], b[:starts_on]] }.each do |booking| %>
 
     <div class="product <%= booking.status == "Refused" ? "product-declined" : "" %> ">
       <div class="photo-div">
@@ -25,8 +24,18 @@
         <% end %>
       </div>
       
-      <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
-        <li><a href="" class="control-hover"><i class="fa fa-ban" aria-hidden="true"></i> cancel</a></li>
+      <ul class="list-inline product-controls <%= booking.status == "Refused" ? "" : "product-controls-hidden" %>">
+        <li>
+          <% if booking.status == "Refused"  %>
+            <%= link_to artwork_booking_path(booking.artwork, booking), class: "control-hover", method: :delete do %>
+              <i class="fa fa-trash" aria-hidden="true"></i> delete
+            <% end %>
+          <% else %>
+            <%= link_to artwork_booking_path(booking.artwork, booking), class: "control-hover", method: :delete do %>
+              <i class="fa fa-ban" aria-hidden="true"></i> cancel
+            <% end %>
+          <% end %>
+        </li>
       </ul>
     </div>
     <% end -%>

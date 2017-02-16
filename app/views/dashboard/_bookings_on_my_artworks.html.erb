@@ -1,8 +1,7 @@
 <div class="tab-content hidden" id="bookings_on_my_artworks">
   <div class="list">
     <% if @bookings_on_my_artworks != [] %>
-    <% sorted_by_status = @bookings_on_my_artworks.sort_by { |hsh| hsh[:status] } %>
-    <% sorted_by_status.sort_by { |hsh| hsh[:starts_on] }.each do |booking_on_my_artworks| %>
+    <% @bookings_on_my_artworks.sort { |a, b| [a[:status], a[:starts_on]] <=> [b[:status], b[:starts_on]] }.each do |booking_on_my_artworks| %>
 
     <div class="product <%= booking_on_my_artworks.status == "Refused" ? "product-declined" : "" %>">
       <div class="photo-div">
@@ -12,9 +11,17 @@
         <h3> <%= booking_on_my_artworks.artwork.name %> </h3>
         <p> <strong>Starts on:</strong> <%= booking_on_my_artworks.starts_on.strftime('%a %d %b %Y') %> </p>
         <p> <strong>Ends on:</strong> <%= booking_on_my_artworks.ends_on.strftime('%a %d %b %Y') %> </p>
-        <p> <strong>Total price:</strong> <%= booking_on_my_artworks.price %> €</p>
-        <p> <strong>Status:</strong> <%= booking_on_my_artworks.status %></p>
+        <p> <strong>Price:</strong> <%= booking_on_my_artworks.price %> €</p>
       </div>
+
+      <div class='product-status'>
+        <% if booking_on_my_artworks.status == "Confirmed" %>
+          <span class="accept-green"><i class="fa fa-check" aria-hidden="true"></i> confirmed</span>
+        <% elsif booking_on_my_artworks.status == "Refused"  %>
+          <span class="refuse-red"><i class="fa fa-times" aria-hidden="true"></i> declined</span>
+        <% end %>
+      </div>
+
       <% if booking_on_my_artworks.status == "Pending" %>
       <ul class="list-inline product-controls">
         <li>        
@@ -29,8 +36,18 @@
         </li>
       </ul>
       <% else %>
-      <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
-      <li><a href="" class="control-hover"><i class="fa fa-ban" aria-hidden="true"></i> cancel</a></li>
+      <ul class="list-inline product-controls <%= booking_on_my_artworks.status == "Refused" ? "" : "product-controls-hidden" %>">
+        <li>
+          <% if booking_on_my_artworks.status == "Refused"  %>
+            <%= link_to artwork_booking_path(booking_on_my_artworks.artwork, booking_on_my_artworks), class: "control-hover", method: :delete do %>
+              <i class="fa fa-trash" aria-hidden="true"></i> remove
+            <% end %>
+          <% else %>
+            <%= link_to artwork_booking_path(booking_on_my_artworks.artwork, booking_on_my_artworks), class: "control-hover", method: :delete do %>
+              <i class="fa fa-ban" aria-hidden="true"></i> cancel
+            <% end %>
+          <% end %>
+        </li>
       </ul>
       <% end %>
 
