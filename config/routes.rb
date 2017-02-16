@@ -9,8 +9,14 @@ Rails.application.routes.draw do
     resources :bookings
   end
 
+  post 'users/:user_id/reviews', to: 'reviews#create', as: :create_review
+
   get 'mine', to: 'artworks#mine', as: :mine
   get '/contact' => 'pages#contact'
   get '/about' => 'pages#about'
   get '/dashboard', to: 'dashboard#index'
+
+  scope module: 'users' do
+    resources :users, only: [:show]
+  end
 end
