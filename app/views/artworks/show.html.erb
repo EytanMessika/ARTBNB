@@ -87,18 +87,19 @@
   </div>
 -->
 
+</div>
+
 <!-- calulate price and display it -->
+<% content_for(:after_js) do %>
 <script>
-	$(document).ready(function() {
-		$("#end_date").on("dp.hide", function(e) {
-			var from = $("#start_date").val().split("/");
-			var to = $("#end_date").val().split("/");
-			var start = new Date(from[2], from[1] - 1, from[0]);
-			var end = new Date(to[2], to[1] - 1, to[0]);
-			var nb_days = (end - start)/(1000*60*60*24) + 1;
-			var total_price = nb_days * <%= @artwork.price %>;
-			$("#total_price").html(total_price + " €");
-		});
+	$("#end_date").on("change", function(e) {
+		var from = $("#start_date").val().split("/");
+		var to = $("#end_date").val().split("/");
+		var start = new Date(from[2], from[1] - 1, from[0]);
+		var end = new Date(to[2], to[1] - 1, to[0]);
+		var nb_days = (end - start)/(1000*60*60*24) + 1;
+		var total_price = nb_days * <%= @artwork.price %>;
+		$("#total_price").html(total_price + " €");
 	});
 </script>
-</div>
+<% end %>

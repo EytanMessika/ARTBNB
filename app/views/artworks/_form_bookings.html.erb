@@ -6,8 +6,7 @@
 		<input type="text" class="input-sm form-control" id="end_date" name="booking[ends_on]" placeholder="ends"/>
 	</div>
 	<br>
-	<strong>Total price:</strong>
-	<div id="total_price"></div>
+	<strong>Total price: </strong><span id="total_price"></span>
 
 	<%= f.input :price, as: :hidden %>
 <%= f.submit "Book now", class: "btn btn-booking" %>
