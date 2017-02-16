@@ -9,6 +9,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'redis'
 
+gem 'gibbon'
+
 gem 'omniauth-facebook'
 
 gem 'cloudinary', '1.1.0'

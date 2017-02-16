@@ -1,0 +1,55 @@
+<div class="wrapper">
+  <div class="container text-center ">
+   <h2>My Profile</h2>
+   <div class="row">
+    <div class="col-xs-6">
+     <div class="card">
+      <% avatar_url = current_user.facebook_picture_url || default_avatar = "https://galerie.alittlemarket.com/galerie/sell/2626440/peintures-tableau-acrylique-abstrait-moderne-19314354-20161029-14541891a7-f00a9_big.jpg" %>
+      <%= image_tag avatar_url, class: "avatar"%>
+      <div>
+        <% if current_user.first_name != nil  %>
+        <h4> <%= current_user.first_name %></h4>
+        <h4> <%= current_user.last_name %></h4>
+        <% else %>
+        <h5> <%= current_user.email %></h5>
+        <% end %>
+      </div>
+      <h4> <%= link_to "Reviews", "" , class: "btn" %> </h4>
+    </div>
+  </div>
+  <div class="col-xs-6 padded">
+    <h4><%= link_to " Edit your profile", edit_user_registration_path, class: "btn" %> </h4>
+    <h4><%= link_to " View your Dashboard", dashboard_path, class: "btn" %> </h4>
+    <h4><%= link_to " List a new artwork", new_artwork_path, class: "btn" %> </h4>
+  </div>
+</div>
+<h2>My Artworks</h2>
+    <div class="row">
+      <% @artworks.each do |artwork| %>
+      <div class="col-xs-12 col-md-4 col-sm-6 ">
+        <div class="card">
+          <div id="card-category">
+            <p> <%= artwork.category %> </p>
+          </div>
+          <div class="card-description">
+            <h3><%= artwork.name %></h3>
+            <h5> <%= artwork.artist_name %> </h5>
+          </div>
+          <div class="card-price">
+            <p> <%= artwork.price %> € / day</p>
+          </div>
+          <div class="card-photo">
+            <%= cl_image_tag artwork.photo, height: 110, width: 150, crop: :fill %>
+          </div>
+          <div class="card-link">
+            <%= link_to '', artwork, {class: "btn-card-link"} %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+</div>
+</div>
+</div>
+</div>
+

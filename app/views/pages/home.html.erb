@@ -73,8 +73,22 @@
 <div class="text-center padded newsletter">
 	<h2>Get news about our artworks</h2>
 	<p>Leave us your mail and get awesome piece of arts</p>
-	<form action="#" class="form-inline">
-		<input type="email" placeholder="your mail" class="form-control">
-		<input type="submit" value="Subscribe" class="btn btn-rounded">
-	</form>
+
+<%= form_tag(subscribe_path) do %>
+  <div class="form-group form-inline">
+    <%= email_field_tag :email, '', placeholder: 'Email', class: 'form-control' %>
+  </div>
+  <div class="form-group form-inline">
+    <%= submit_tag "Subscribe", class: 'btn btn-rounded' %>
+  </div>
+<% end %>
+
 </div>
+
+
+
+
+
+
+
+
