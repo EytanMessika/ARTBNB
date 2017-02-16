@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   get '/contact' => 'pages#contact'
   get '/about' => 'pages#about'
   get '/dashboard', to: 'dashboard#index'
-
+  get '/profile', to: 'profile#index'
   post '/subscribe', to: 'pages#subscribe'
-
 end
