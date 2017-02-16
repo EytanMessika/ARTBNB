@@ -11,7 +11,7 @@
   justify-content: space-between;
   position: relative;
   z-index: 50;
-  
+
 }
 
 #logo {
@@ -163,4 +163,8 @@
   transform: rotate(45deg);
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
 }

@@ -5,6 +5,7 @@
 }
 
 .product {
+  margin: 2px 0;
   display: flex;
   align-items: center;
   padding: 20px;
@@ -91,13 +92,20 @@
   color: #E6E6E6;
   z-index: 1000;
 }
-a.accept-green:hover {
-  color: green !important
+.accept-green {
+  color: green !important;
+  transition: all 0.2s ease;
 }
-a.refuse-red:hover {
-  color: #D3473C !important
+
+.refuse-red {
+  color: #D3473C !important;
+  transition: all 0.2s ease;
+}
+.pending-yellow {
+  color: #FF8000 !important
 }
 a.control-hover:hover {
+  text-decoration: none;
   color: #D3473C !important
 }
 .product-controls-hidden a {
@@ -110,6 +118,10 @@ li a {
   font-size: 10px;
   font-weight: lighter;
 } 
+
+.product-declined {
+  background: #f7f7fa;
+}
 /* Hover effects */
 .product:hover {
   background: #f7f7fa;
@@ -118,3 +130,9 @@ li a {
 
 // .product:hover .product-upvote { transform: scale(1.2) }
 .product:hover .product-controls-hidden a { color: #E6E6E6 }
+
+.product-status {
+  position: absolute;
+  top: 20px;
+  right: 48px;
+}

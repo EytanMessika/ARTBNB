@@ -1,56 +1,55 @@
-<div class="screen-footer">
-	<div class="banner margin-bottom" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%), url(<%= @artwork.photo %>); height: 50vh; background-position: center; background-size: cover">
-	</div>
+<div class="banner margin-bottom" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%), url(<%= @artwork.photo %>); height: 50vh; background-position: center; background-size: cover">
+</div>
 
 
-	<% if current_user == @artwork.user %>
-	<ul class="list-inline list-margined">
-		<li>
-			<%= link_to "Edit artwork", edit_artwork_path(@artwork), class: "btn btn-primary" %>
-		</li>
-		<li>
-			<%= link_to "Delete artwork", artwork_path(@artwork), method: :delete, class: "btn btn-danger" %>
-		</li>
-		<% end %>
-	</ul>
-	<div class="header-flat">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12 col-sm-6 col-sm-offset-1 margin-bottom">
-					<h1 class="text-center"><%= @artwork.name %></h1>
-					<div class="text-center">
-						<p> <strong>Artist name :</strong> <%= @artwork.artist_name %></p>
-						<p> <strong>Category :</strong> <%= @artwork.category %></p>
-						<p> <strong>Price : </strong><%= @artwork.price %> € / Day</p>
-						<p class="margin-bottom"><strong> Dimensions : </strong> <%= @artwork.dimensions %></p>
-					</div class = "margin-bottom">
-					<div class="photo-margined">
-						<%= cl_image_tag @artwork.photo,
-						width: 300, height: 300, crop: :fill %>
-					</div>
+<% if current_user == @artwork.user %>
+<ul class="list-inline list-margined">
+	<li>
+		<%= link_to "Edit artwork", edit_artwork_path(@artwork), class: "btn btn-primary" %>
+	</li>
+	<li>
+		<%= link_to "Delete artwork", artwork_path(@artwork), method: :delete, class: "btn btn-danger" %>
+	</li>
+	<% end %>
+</ul>
+<div class="header-flat">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-sm-offset-1 margin-bottom">
+				<h1 class="text-center"><%= @artwork.name %></h1>
+				<div class="text-center">
+					<p> <strong>Artist name :</strong> <%= @artwork.artist_name %></p>
+					<p> <strong>Category :</strong> <%= @artwork.category %></p>
+					<p> <strong>Price : </strong><%= @artwork.price %> € / Day</p>
+					<p class="margin-bottom"><strong> Dimensions : </strong> <%= @artwork.dimensions %></p>
+				</div class = "margin-bottom">
+				<div class="photo-margined">
+					<%= cl_image_tag @artwork.photo,
+					width: 300, height: 300, crop: :fill %>
 				</div>
+			</div>
 
-				<div class="col-xs-12 col-sm-4">
-					<div class="booking-card">
-						<div class="booking-price-area">
-							<div class="row">
-								<div class="col-xs-8">
-									<span class="booking-price"><%= @artwork.price %>€</span>
-								</div>
-								<div class="col-xs-4">
-									<span class= "price-frequency">per day</span>
-								</div>
+			<div class="col-xs-12 col-sm-4">
+				<div class="booking-card">
+					<div class="booking-price-area">
+						<div class="row">
+							<div class="col-xs-8">
+								<span class="booking-price"><%= @artwork.price %>€</span>
+							</div>
+							<div class="col-xs-4">
+								<span class= "price-frequency">per day</span>
 							</div>
 						</div>
-						<div class="booking-form">
-							<h3>Book it</h3>
-							<%= render 'artworks/form_bookings' %>
-						</div>
+					</div>
+					<div class="booking-form">
+						<h3>Book it</h3>
+						<%= render 'artworks/form_bookings' %>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
 <!-- <div class="flat-description">
 	<div class="container">
@@ -86,4 +85,18 @@
 	</div>
   </div>
 -->
-</div>
+
+<!-- calulate price and display it -->
+<% content_for(:after_js) do %>
+<script>
+	$("#start_date, #end_date").on("change", function(e) {
+		var from = $("#start_date").val().split("/");
+		var to = $("#end_date").val().split("/");
+		var start = new Date(from[2], from[1] - 1, from[0]);
+		var end = new Date(to[2], to[1] - 1, to[0]);
+		var nb_days = Math.round((end - start)/(1000*60*60*24)) + 1;
+		var total_price = nb_days * <%= @artwork.price %>;
+		$("#total_price").html(total_price + " €");
+	});
+</script>
+<% end %>
