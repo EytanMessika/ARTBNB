@@ -9,51 +9,59 @@
   </div>
 
   <div class="container">
-    <h3>His artworks</h3>
-    <div class="row">
-      <% @artworks.each do |artwork| %>
-      <div class="col-xs-12 col-md-4 col-sm-6 ">
-        <div class="card">
-          <div id="card-category">
-            <p> <%= artwork.category %> </p>
-          </div>
-          <div class="card-description">
-            <h3><%= artwork.name %></h3>
-            <h5> <%= artwork.artist_name %> </h5>
-          </div>
-          <div class="card-price">
-            <p> <%= artwork.price %> € / day</p>
-          </div>
-          <div class="card-photo">
-            <%= cl_image_tag artwork.photo, height: 110, width: 150, crop: :fill %>
-          </div>
-          <div class="card-link">
-            <%= link_to '', artwork, {class: "btn-card-link"} %>
+    <% unless @reviews.empty? %>
+      <h3>His artworks</h3>
+      <div class="row">
+        <% @artworks.each do |artwork| %>
+        <div class="col-xs-12 col-md-4 col-sm-6 ">
+          <div class="card">
+            <div id="card-category">
+              <p> <%= artwork.category %> </p>
+            </div>
+            <div class="card-description">
+              <h3><%= artwork.name %></h3>
+              <h5> <%= artwork.artist_name %> </h5>
+            </div>
+            <div class="card-price">
+              <p> <%= artwork.price %> € / day</p>
+            </div>
+            <div class="card-photo">
+              <%= cl_image_tag artwork.photo, height: 110, width: 150, crop: :fill %>
+            </div>
+            <div class="card-link">
+              <%= link_to '', artwork, {class: "btn-card-link"} %>
+            </div>
           </div>
         </div>
-      </div>
+        <% end %>
       <% end %>
     </div>
   </div>
 
   <div class="container">
+  <% unless @reviews.empty? %>
   <h3>Reviews: </h3>
     <% @reviews.each do |review| %>
       <p> <%= review.created_at %> </p>
       <p> <%= review.body %> </p>
       <p> <%= review.rating %> </p>
     <% end %>
+  <% end %>
   </div>
 
   <div class="container">
-    <% if current_user != @user %>
-      <%= simple_form_for [Review.new], url: create_review_path(@user), method: :post do |f| %>
-        <%= f.input :body %>
-        <%= f.input :rating %>
-        <%= f.submit "Submit", class: "btn btn-primary margin-bottom" %>
+    <div class="review-form">
+      <% if @user.where(@booking.user.exists?, @booking.user.ends_on < Time.now) %>
+        <h3>Leave a review:</h3>
+        <%= simple_form_for [Review.new], url: create_review_path(@user), method: :post do |f| %>
+          <%= f.input :body %>
+          <%= f.input :rating %>
+          <%= f.submit "Submit", class: "btn btn-primary margin-bottom" %>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
+
 </div>
 
 
