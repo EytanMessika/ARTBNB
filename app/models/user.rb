@@ -1,11 +1,14 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  after_create :subscribe_to_newsletter
+
   devise :database_authenticatable, :registerable,
          :recoverable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
-  has_many :artworks
+  has_many :artworks, dependent: :destroy
+  has_many :bookings, dependent: :destroy
 
   has_many :reviews_received, class_name: "Reviews", foreign_key: "reviewed_id"
   has_many :reviews_given, class_name: "Reviews", foreign_key: "reviewer_id"
@@ -30,5 +33,12 @@ class User < ApplicationRecord
 
     return user
   end
+
+private
+
+  def subscribe_to_newsletter
+    SubscribeToNewsletterService.new(self).call
+  end
+
 
 end
