@@ -1,0 +1,41 @@
+<div class="tab-content hidden" id="artworks">
+  <div class="list">
+    <div class="button-div">
+      <%= link_to "List a new artwork", new_artwork_path, class: "btn btn-rounded" %>
+    </div>
+    <% if @artworks != [] %>
+    <% @artworks.each do |artwork| %>
+
+    <div class="product">
+      <div class="photo-div">
+        <%= cl_image_tag(artwork.photo, width: 400, height: 600, crop: :limit, class:"product-image") %>
+      </div>
+      <div class='product-body'>
+        <h3> <%= artwork.name %> </h3>
+        <p> <%= artwork.artist_name %></p>
+        <p> <%= artwork.price %> € per day</p>
+      </div>
+      <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
+        <li>
+          <%= link_to edit_artwork_path(artwork), class: "control-hover" do %>
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit
+          <% end %>
+        </li>
+        <li>
+
+          <%= link_to artwork_path(artwork), class: "control-hover", method: :delete do %>
+          <i class="fa fa-trash" aria-hidden="true"></i> delete
+          <% end %>
+        </li>
+      </ul>
+    </div>
+    <% end -%>
+    <% else %>
+    <div class="product">
+      <div class='product-body'>
+        <h3> No artworks listed yet.</h3>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

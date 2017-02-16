@@ -1,0 +1,41 @@
+<div class="tab-content" id="bookings">
+  <div class="list">
+    <% if @bookings != [] %>
+    <% sorted_by_status = @bookings.sort_by { |hsh| hsh[:status] } %>
+    <% sorted_by_status.sort_by { |hsh| hsh[:starts_on] }.each do |booking| %>
+
+    <div class="product <%= booking.status == "Refused" ? "product-declined" : "" %> ">
+      <div class="photo-div">
+        <%= cl_image_tag(booking.artwork.photo, width: 400, height: 600, crop: :limit, class:"product-image") %>
+      </div>
+      <div class='product-body'>
+        <h3> <%= booking.artwork.name %> </h3>
+        <p> <strong>Starts on:</strong> <%= booking.starts_on.strftime('%a %d %b %Y') %> </p>
+        <p> <strong>Ends on:</strong> <%= booking.ends_on.strftime('%a %d %b %Y') %> </p>
+        <p> <strong>Price:</strong> <%= booking.price %> €</p>
+      </div>
+
+      <div class='product-status'>
+        <% if booking.status == "Pending" %>
+          <span class="pending-yellow"><i class="fa fa-hourglass-half" aria-hidden="true"></i> pending</span>
+        <% elsif booking.status == "Confirmed" %>
+          <span class="accept-green"><i class="fa fa-check" aria-hidden="true"></i> confirmed</span>
+        <% else %>
+          <span class="refuse-red"><i class="fa fa-times" aria-hidden="true"></i> declined</span>
+        <% end %>
+      </div>
+      
+      <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
+        <li><a href="" class="control-hover"><i class="fa fa-ban" aria-hidden="true"></i> cancel</a></li>
+      </ul>
+    </div>
+    <% end -%>
+    <% else %>
+    <div class="product">
+      <div class='product-body'>
+        <h3> No bookings yet.</h3>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
