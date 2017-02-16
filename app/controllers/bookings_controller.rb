@@ -28,14 +28,20 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @booking.status = "Confirmed"
     @booking.save
-    redirect_to dashboard_path
+    respond_to do |format|
+      format.html { redirect_to dashboard_path }
+      format.js  # <-- will render `app/views/reviews/create.js.erb`
+    end
   end
 
   def refuse_booking
     @booking = Booking.find(params[:id])
     @booking.status = "Refused"
     @booking.save
-    redirect_to dashboard_path
+    respond_to do |format|
+      format.html { redirect_to dashboard_path }
+      format.js  # <-- will render `app/views/reviews/create.js.erb`
+    end
   end
 
   private
