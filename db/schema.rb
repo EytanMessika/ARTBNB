@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170214150540) do
+ActiveRecord::Schema.define(version: 20170216132542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,11 +34,21 @@ ActiveRecord::Schema.define(version: 20170214150540) do
     t.integer  "price"
     t.integer  "user_id"
     t.integer  "artwork_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "status"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "status",     default: "Pending"
     t.index ["artwork_id"], name: "index_bookings_on_artwork_id", using: :btree
     t.index ["user_id"], name: "index_bookings_on_user_id", using: :btree
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.date     "date"
+    t.text     "body"
+    t.integer  "rating"
+    t.integer  "booking_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_reviews_on_booking_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,4 +78,5 @@ ActiveRecord::Schema.define(version: 20170214150540) do
   add_foreign_key "artworks", "users"
   add_foreign_key "bookings", "artworks"
   add_foreign_key "bookings", "users"
+  add_foreign_key "reviews", "bookings"
 end
