@@ -8,9 +8,19 @@ Rails.application.routes.draw do
     put  "bookings/:id", to: "bookings#refuse_booking", as: :refuse_booking
     resources :bookings, only: [:create, :destroy]
   end
+  
+  get '/profile', to: 'profile#index'
+  post '/subscribe', to: 'pages#subscribe'
+
+  post 'users/:user_id/reviews', to: 'reviews#create', as: :create_review
 
   get 'mine', to: 'artworks#mine', as: :mine
   get '/contact' => 'pages#contact'
   get '/about' => 'pages#about'
   get '/dashboard', to: 'dashboard#index'
+  
+  scope module: 'users' do
+    resources :users, only: [:show]
+  end
+  
 end
