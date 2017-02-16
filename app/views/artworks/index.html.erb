@@ -4,7 +4,8 @@
     <div class="search-container">
       <form action="" class="form-inline" >
         <%= form_tag(artworks_path, :method => "get", id: "search-form") do %>
-        <%= text_field_tag :search, params[:search], placeholder: "Select a category", class: "navbar-wagon-search-input form-control" %>
+        <%= select_tag :search, options_for_select(Artwork::ARTWORK_CATEGORY, params[:search]), prompt: "All categories", class: "navbar-wagon-search-input form-control" %>
+         <%= text_field_tag :search_price, params[:search_price], placeholder: "Max daily budget (€)", class: "navbar-wagon-search-input form-control"%>
         <%= submit_tag "Search", :name => nil, class: "navbar-wagon-search-input form-control" %>
         <% end %>
       </form>
