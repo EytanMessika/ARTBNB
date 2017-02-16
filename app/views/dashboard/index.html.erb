@@ -3,13 +3,13 @@
 </div>
 <div class="container text-center">
   <div class="tabs">
-    <a class="tab active" data-target="#bookings">
+    <a class="tab active" data-target="#bookings" id="my-bookings-tab">
       <h3>MY BOOKINGS</h3>
     </a>
-    <a class="tab" data-target="#artworks">
+    <a class="tab" data-target="#artworks" id="my-artworks-tab">
       <h3>MY ARTWORKS</h3>
     </a>
-    <a class="tab" data-target="#bookings_on_my_artworks">
+    <a class="tab" data-target="#bookings_on_my_artworks" id="bookings-tab">
       <h3>BOOKINGS ON MY ARTWORKS</h3>
     </a>
   </div>
@@ -22,3 +22,14 @@
   <%= render "bookings_on_my_artworks" %>
 
 </div>
+
+<% if params[:tab] %>
+  <% content_for :after_js do %>
+    <%= javascript_tag do %>
+      var tab = '#' + '<%= params[:tab] %>';
+      setTimeout(function() {
+        $(tab).click();
+      }, 2);
+    <% end %>
+  <% end %>
+<% end %>
