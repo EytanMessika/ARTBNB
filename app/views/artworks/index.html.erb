@@ -29,7 +29,7 @@
             <p> <%= artwork.price %> € / day</p>
           </div>
           <div class="card-photo">
-            <%= cl_image_tag artwork.photo, height: 110, width: 150, crop: :fill %>
+            <%= cl_image_tag artwork.photo, height: 110, crop: :fill %>
           </div>
           <div class="card-link">
             <%= link_to '', artwork, {class: "btn-card-link"} %>
