@@ -10,6 +10,8 @@ class Artwork < ApplicationRecord
   validates :price, presence: true
   validates :photo, presence: true
 
+  ARTWORK_CATEGORY = ["Painting", "Sculpture", "Photography", "Icon", "Drawing"]
+
   def self.search(search)
     where("category LIKE ?", "%#{search}%")
   end

@@ -5,11 +5,11 @@ class ArtworksController < ApplicationController
     @artworks = Artwork.all
     if params[:search]
       @artworks = Artwork.search(params[:search])
-    else
-      @artworks = Artwork.all
+    end
+    if params[:search_price] != ""
+      @artworks = @artworks.where("price < ?", params[:search_price])
     end
   end
-
 
   def show
     @artwork = Artwork.find(params[:id])
