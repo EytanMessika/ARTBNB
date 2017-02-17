@@ -5,4 +5,14 @@ class Booking < ApplicationRecord
   has_one :review
   validates :starts_on, presence: true
   validates :ends_on, presence: true
+
+  def self.check_user(user)
+  	@pendings = Booking.where(status: "Pending")
+  	@pendings.each do |booking|
+  		if booking.artwork.user == user
+  			return true
+  		end
+  	return false
+  	end
+  end
 end

@@ -1,11 +1,14 @@
 <div class="product <%= booking_on_my_artworks.status == "Refused" ? "product-declined" : "" %>">
   <div class="photo-div">
+  <%= link_to artwork_path(booking_on_my_artworks.artwork) do %>
     <%= cl_image_tag(booking_on_my_artworks.artwork.photo, width: 400, height: 600, crop: :limit, class:"product-image") %>
+    <% end %>
   </div>
   <div class='product-body'>
     <h3> <%= booking_on_my_artworks.artwork.name %> </h3>
     <p> <strong>Starts on:</strong> <%= booking_on_my_artworks.starts_on.strftime('%a %d %b %Y') %> </p>
     <p> <strong>Ends on:</strong> <%= booking_on_my_artworks.ends_on.strftime('%a %d %b %Y') %> </p>
+    <p> <strong>Booked by:</strong> <%= link_to booking_on_my_artworks.user.email, user_path(booking_on_my_artworks.user) %></p>
     <p> <strong>Price:</strong> <%= booking_on_my_artworks.price %> €</p>
   </div>
 

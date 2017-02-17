@@ -1,5 +1,20 @@
+<<<<<<< HEAD
 <div class="screen-footer">
   <div class="container user-show">
+=======
+<div class="screen-footer padded">
+  <div class="container flexx">
+    <% avatar_url = @user.facebook_picture_url || default_avatar = "https://galerie.alittlemarket.com/galerie/sell/2626440/peintures-tableau-acrylique-abstrait-moderne-19314354-20161029-14541891a7-f00a9_big.jpg" %>
+    <%= image_tag avatar_url, class: "avatar-xlarge"%>
+    <div class="margined">
+      <h1 class="dashboard-title">Gauthier<span class="minted"> Levha</span></h1>
+      <p><i class="fa fa-envelope-o" aria-hidden="true"></i> <%= mail_to @user.email %></p>
+    </div>
+  </div>
+
+  <div class="container padded">
+    <h1 class="dashboard-title text-center">His<span class="minted"> art</span>works</h1>
+>>>>>>> master
     <div class="row">
       <div class="col-sm-4">
         <div class="user-photo">
@@ -77,6 +92,7 @@
     <% if @bookings != nil %>
     <% @bookings.each do |booking| %>
 
+<<<<<<< HEAD
       <h3>Leave a review:</h3>
        <%= simple_form_for [booking, booking.review], url: booking_reviews_path(booking), method: :post do |f| %>
            <%= f.input :body %>
@@ -86,6 +102,14 @@
         <% end %>
     <% end %>
   </div>
+=======
+  <div class="container">
+    <h1 class="dashboard-title text-center">Rate his<span class="minted"> art</span>:</h1>
+    <h3 class="text-center">Available soon!</h3>
+  </div>
+
+  
+>>>>>>> master
 </div>
 
 
