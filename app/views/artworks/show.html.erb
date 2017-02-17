@@ -1,77 +1,86 @@
-<div class="container">
-	<div class="row">
-		<div class="col-xs-12 col-sm-8">
-			<h1 class="text-center"><%= @artwork.name %></h1>
-			<div class="text-center">
-				<p> <strong>Artist name :</strong> <%= @artwork.artist_name %></p>
-				<p> <strong>Category :</strong> <%= @artwork.category %></p>
-				<p> <strong>Price : </strong><%= @artwork.price %> € / Day</p>
-				<p class="margin-bottom"><strong> Dimensions : </strong> <%= @artwork.dimensions %></p>
-			</div class = "margin-bottom">
-			<div class="photo-margined">
-				<%= cl_image_tag @artwork.photo,
-				width: 300, height: 300, crop: :fill %>
+<div class="container padded show-artwork">
+	<div class="row" id="center-picture">
+			<div class="col-xs-12 col-sm-7 text-center" id="art-picture">
+				<%= cl_image_tag @artwork.photo %>
 			</div>
-		</div>
 
-		<div class="col-xs-12 col-sm-4">
-			<div class="booking-card">
-				<div class="booking-price-area">
-					<div class="row">
-						<div class="col-xs-8">
-							<span class="booking-price"><%= @artwork.price %>€</span>
-						</div>
-						<div class="col-xs-4">
-							<span class= "price-frequency">per day</span>
+		<div class="col-xs-12 col-sm-5">
+			<h1><%= @artwork.name %></h1>
+			<h4><%= @artwork.artist_name %></h4>
+			<br>
+			<p><strong>Category:</strong> <%= @artwork.category %></p>
+			<p><strong>Dimensions:</strong> <%= @artwork.dimensions %></p>
+
+
+			<% if @artwork.user == current_user %>
+			<ul class="list-inline list-margined">
+				<li>
+					<%= link_to "Edit artwork", edit_artwork_path(@artwork), class: "btn btn-booking" %>
+				</li>
+				<li>
+					<%= link_to "Delete artwork", artwork_path(@artwork), method: :delete, class: "btn btn-delete" %>
+				</li>
+			</ul>
+			<% else %>
+			<div class="center-element">
+				<div class="booking-card">
+					<div class="booking-price-area">
+						<div class="row">
+							<div class="col-xs-8">
+								<span class="booking-price"><%= @artwork.price %>€</span>
+							</div>
+							<div class="col-xs-4">
+								<span class= "price-frequency">per day</span>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="booking-form">
-					<h3>Book it</h3>
-					<%= render 'artworks/form_bookings' %>
+					<div class="booking-form">
+						<h4>Book it</h4>
+						<%= render 'artworks/form_bookings' %>
+					</div>
 				</div>
 			</div>
+			<% end %>
+
 		</div>
 	</div>
+	<div class="row">
+		
+
+		<div class="col-xs-12 padded description">
+			<%= @artwork.description %>
+		</div>
+	</div>
+
 </div>
 
-<% if current_user == @artwork.user %>
-	<ul class="list-inline list-margined">
-		<li>
-			<%= link_to "Edit artwork", edit_artwork_path(@artwork), class: "btn btn-primary" %>
-		</li>
-		<li>
-			<%= link_to "Delete artwork", artwork_path(@artwork), method: :delete, class: "btn btn-danger" %>
-		</li>
-	</ul>
-<% end %>
+<div id="map" style="width: 100%; height: 400px;"></div>
 
-<div id="map-container">
-	<div id="map" style="width: 90%; height: 400px;"></div>
-</div>
+
 
 <!-- display map with marker -->
 <% content_for(:after_js) do %>
-  <%= javascript_tag do %>
-    $(document).ready(function() {
-    	var styles = [{"featureType":"administrative","elementType":"all","stylers":[{"saturation":"-100"}]},{"featureType":"administrative.province","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"landscape","elementType":"all","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","elementType":"all","stylers":[{"saturation":-100},{"lightness":"50"},{"visibility":"simplified"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":"-100"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"all","stylers":[{"lightness":"30"}]},{"featureType":"road.local","elementType":"all","stylers":[{"lightness":"40"}]},{"featureType":"transit","elementType":"all","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]},{"featureType":"water","elementType":"labels","stylers":[{"lightness":-25},{"saturation":-100}]}];
-      var handler = Gmaps.build('Google');
-      handler.buildMap({ 
-				provider: {
-			    styles: styles
-			  },
-      	internal: { id: 'map' } }, function() {
-	        markers = handler.addMarkers(<%= raw @hash.to_json %>);
-	        handler.bounds.extendWith(markers);
-	        handler.fitMapToBounds();
-	        if (markers.length == 0) {
-	          handler.getMap().setZoom(2);
-	        } else if (markers.length == 1) {
-	          handler.getMap().setZoom(12);
-	        }
-      });
-    });
-  <% end %>
+<%= javascript_tag do %>
+$(document).ready(function() {
+var styles = [{"featureType":"administrative","elementType":"all","stylers":[{"saturation":"-100"}]},{"featureType":"administrative.province","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"landscape","elementType":"all","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","elementType":"all","stylers":[{"saturation":-100},{"lightness":"50"},{"visibility":"simplified"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":"-100"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"all","stylers":[{"lightness":"30"}]},{"featureType":"road.local","elementType":"all","stylers":[{"lightness":"40"}]},{"featureType":"transit","elementType":"all","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]},{"featureType":"water","elementType":"labels","stylers":[{"lightness":-25},{"saturation":-100}]}];
+var handler = Gmaps.build('Google');
+handler.buildMap({ 
+provider: {
+styles: styles,
+scrollwheel: false
+},
+internal: { id: 'map' } }, function() {
+markers = handler.addMarkers(<%= raw @hash.to_json %>);
+handler.bounds.extendWith(markers);
+handler.fitMapToBounds();
+if (markers.length == 0) {
+handler.getMap().setZoom(2);
+} else if (markers.length == 1) {
+handler.getMap().setZoom(12);
+}
+});
+});
+<% end %>
 <% end %>
 
 

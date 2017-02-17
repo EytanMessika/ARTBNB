@@ -46,7 +46,7 @@ class ArtworksController < ApplicationController
   def update
     @artwork = Artwork.find(params[:id])
     if @artwork.update(artwork_params)
-      redirect_to dashboard_path(tab: "my-artworks-tab")
+      redirect_to artwork_path(@artwork)
     else
       render :edit
     end
