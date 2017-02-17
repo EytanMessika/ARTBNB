@@ -1,15 +1,15 @@
-<div class="screen-footer">
-  <div class="container text center">
-    <h1>The art collector</h1>
+<div class="screen-footer padded">
+  <div class="container flexx">
+    <% avatar_url = @user.facebook_picture_url || default_avatar = "https://galerie.alittlemarket.com/galerie/sell/2626440/peintures-tableau-acrylique-abstrait-moderne-19314354-20161029-14541891a7-f00a9_big.jpg" %>
+    <%= image_tag avatar_url, class: "avatar-xlarge"%>
+    <div class="margined">
+      <h1 class="dashboard-title">Gauthier<span class="minted"> Levha</span></h1>
+      <p><i class="fa fa-envelope-o" aria-hidden="true"></i> <%= mail_to @user.email %></p>
+    </div>
   </div>
 
-  <div class="container">
-    <p>User photo</p>
-    <p>User description</p>
-  </div>
-
-  <div class="container">
-    <h3>His artworks</h3>
+  <div class="container padded">
+    <h1 class="dashboard-title text-center">His<span class="minted"> art</span>works</h1>
     <div class="row">
       <% @artworks.each do |artwork| %>
       <div class="col-xs-12 col-md-4 col-sm-6 ">
@@ -37,23 +37,11 @@
   </div>
 
   <div class="container">
-  <h3>Reviews: </h3>
-    <% @reviews.each do |review| %>
-      <p> <%= review.created_at %> </p>
-      <p> <%= review.body %> </p>
-      <p> <%= review.rating %> </p>
-    <% end %>
+    <h1 class="dashboard-title text-center">Rate his<span class="minted"> art</span>:</h1>
+    <h3 class="text-center">Available soon!</h3>
   </div>
 
-  <div class="container">
-    <% if current_user != @user %>
-      <%= simple_form_for [Review.new], url: create_review_path(@user), method: :post do |f| %>
-        <%= f.input :body %>
-        <%= f.input :rating %>
-        <%= f.submit "Submit", class: "btn btn-primary margin-bottom" %>
-      <% end %>
-    <% end %>
-  </div>
+  
 </div>
 
 

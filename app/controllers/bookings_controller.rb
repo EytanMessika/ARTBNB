@@ -41,7 +41,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:starts_on, :ends_on, :price, :user_id, :artwork_id, :status)
+    params.require(:booking).permit(:starts_on, :ends_on, :price, :user_id, :artwork_id, :status, :tab)
   end
 
   def price_calculation(starts_on, ends_on, daily_price)
