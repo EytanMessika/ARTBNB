@@ -3,7 +3,11 @@ class Artwork < ApplicationRecord
   has_many :bookings, dependent: :destroy
   mount_uploader :photo, PhotoUploader
 
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+
   validates :name, presence: true
+  validates :address, presence: true
   validates :artist_name, presence: true
   validates :category, presence: true
   validates :dimensions, presence: true
