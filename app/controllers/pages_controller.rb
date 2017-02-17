@@ -12,7 +12,7 @@ class PagesController < ApplicationController
     begin
       NewsletterOk.new.run(params)
 
-      flash[:notice] = "You successfully subscribed to the Newsletter!"
+      flash[:notice] = "You successfully subscribed to the You n' Art newsletter!"
     rescue Gibbon::MailChimpError => e
       flash[:alert] = e.message
     end
