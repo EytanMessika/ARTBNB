@@ -53,9 +53,11 @@
 }
 
 .product-image {
-  border-radius: 10px;
+  border-radius: 2px;
+  border-width:5px;
+  border-color:$grey;
+  border-style:double;
   background-size: cover;
-  width: 100%;
   height: 100%;
   background-repeat: no-repeat;
 }
