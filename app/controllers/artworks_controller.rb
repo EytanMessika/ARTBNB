@@ -3,11 +3,14 @@ class ArtworksController < ApplicationController
 
   def index
     @artworks = Artwork.all
-    if params[:search]
-      @artworks = Artwork.search(params[:search])
-    end
-    if params[:search_price] != ""
-      @artworks = @artworks.where("price < ?", params[:search_price])
+    if params[:search] == nil && params[:search_price] == nil
+      @artworks = Artwork.all
+    elsif params[:search] != "" && params[:search_price] == ""
+      @artworks = @artworks.where("category = ?", params[:search])
+    elsif params[:search_price] != "" && params[:search] == ""
+      @artworks = @artworks.where("price <= ?", params[:search_price])
+    elsif params[:search_price] != "" && params[:search] != ""
+      @artworks = @artworks.where("price <= ? AND category = ?", params[:search_price], params[:search])
     end
   end
 
