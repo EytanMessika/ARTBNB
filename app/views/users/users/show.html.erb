@@ -45,7 +45,7 @@
           <% end %>
         </div>
         <div class="review-section">
-          <% unless @reviews.empty? %>
+          <% if @reviews %>
             <h3>Reviews ( <%= @reviews.count %> ) </h3>
             <div class="reviews">
               <div class="row">
@@ -74,14 +74,16 @@
   </div>
 </div>
   <div class="review-form">
-  <% raise %>
     <% if @bookings != nil %>
+    <% @bookings.each do |booking| %>
+
       <h3>Leave a review:</h3>
-      <%= simple_form_for [Review.new], url: create_review_path(@user), method: :post do |f| %>
-        <%= f.input :body %>
-        <%= f.input :rating %>
-        <%= f.submit "Submit", class: "btn btn-primary margin-bottom" %>
-      <% end %>
+       <%= simple_form_for [booking, booking.review], url: booking_reviews_path(booking), method: :post do |f| %>
+           <%= f.input :body %>
+           <%= f.input :rating %>
+           <%= f.submit "Submit", class: "btn btn-primary margin-bottom" %>
+             <% end %>
+        <% end %>
     <% end %>
   </div>
 </div>

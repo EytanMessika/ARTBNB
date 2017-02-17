@@ -1,7 +1,6 @@
 class ReviewsController < ApplicationController
   def index
-    @reviews_received = Review.where(reviewed: current_user)
-    @reviews_given = Review.where(reviewer: current_user)
+    @reviews = Review.all
   end
 
   def new
@@ -10,9 +9,13 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @review.reviewer = current_user
-    @review.reviewed = User.find(params[:user_id])
-    @review.save
+    @booking = Booking.find(params[:booking_id])
+    @review.booking = @booking
+    if @review.save
+      redirect_to user_path(@booking.user)
+    else
+      render 'users/show'
+    end
   end
 
 

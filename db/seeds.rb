@@ -12,4 +12,4 @@ User.create!(email:'maxime-dupont@gmail.com', password:'123456', nickname:'Max')
 User.create!(email:'jeannot-dupont@gmail.com', password:'123456', nickname:'Jean')
 
 
- Artwork.create!(name: 'Joconde', artist_name: 'Vinci', category: 'Painting', price: 1000, dimensions: '10x10', photo: 'http://lorempixel.com/400/200/', user_id: User.first.id)
+ Artwork.create!(name: 'Joconde', artist_name: 'Vinci', category: 'Painting', price: 1000, dimensions: '10x10', description:'cool art piece from the renaissance', photo: 'http://lorempixel.com/400/200/', address:'paris', user_id: User.first.id)

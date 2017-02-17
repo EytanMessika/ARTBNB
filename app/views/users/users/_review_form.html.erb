@@ -1,5 +1,0 @@
-<%= simple_form_for [Review.new], url: create_review_path(@user), method: :post do |f| %>
-    <%= f.input :body %>
-    <%= f.input :rating %>
-    <%= f.submit "Submit", class: "btn btn-primary margin-bottom" %>
-  <% end %>

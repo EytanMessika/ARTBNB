@@ -8,10 +8,7 @@ class User < ApplicationRecord
 
   has_many :artworks, dependent: :destroy
   has_many :bookings, dependent: :destroy
-
-  has_many :reviews_received, class_name: "Reviews", foreign_key: "reviewed_id"
-  has_many :reviews_given, class_name: "Reviews", foreign_key: "reviewer_id"
-
+  has_many :reviews, dependent: :destroy
 
   def self.find_for_facebook_oauth(auth)
     user_params = auth.to_h.slice("provider", "uid")
