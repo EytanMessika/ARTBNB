@@ -1,6 +1,8 @@
 <div class="product <%= booking_on_my_artworks.status == "Refused" ? "product-declined" : "" %>">
   <div class="photo-div">
+  <%= link_to artwork_path(booking_on_my_artworks.artwork) do %>
     <%= cl_image_tag(booking_on_my_artworks.artwork.photo, width: 400, height: 600, crop: :limit, class:"product-image") %>
+    <% end %>
   </div>
   <div class='product-body'>
     <h3> <%= booking_on_my_artworks.artwork.name %> </h3>
