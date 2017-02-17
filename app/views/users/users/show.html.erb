@@ -1,70 +1,93 @@
 <div class="screen-footer">
-  <div class="container text center">
-    <h1>The art collector</h1>
-  </div>
-
-  <div class="container">
-    <p>User photo</p>
-    <p>User description</p>
-  </div>
-
-  <div class="container">
-    <% unless @reviews.empty? %>
-      <h3>His artworks</h3>
-      <div class="row">
-        <% @artworks.each do |artwork| %>
-        <div class="col-xs-12 col-md-4 col-sm-6 ">
-          <div class="card">
-            <div id="card-category">
-              <p> <%= artwork.category %> </p>
-            </div>
-            <div class="card-description">
-              <h3><%= artwork.name %></h3>
-              <h5> <%= artwork.artist_name %> </h5>
-            </div>
-            <div class="card-price">
-              <p> <%= artwork.price %> € / day</p>
-            </div>
-            <div class="card-photo">
-              <%= cl_image_tag artwork.photo, height: 110, width: 150, crop: :fill %>
-            </div>
-            <div class="card-link">
-              <%= link_to '', artwork, {class: "btn-card-link"} %>
-            </div>
-          </div>
+  <div class="container user-show">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="user-photo">
+          <img alt="François" class="img-user" height="225" src="http://lorempixel.com/400/200" title="François" width="225" />
         </div>
-        <% end %>
-      <% end %>
+        </div>
+        <div class="col-sm-8 user-content">
+          <h1>
+            Hey, I’m <%= @user.nickname %>
+          </h1>
+          <div class="h5 space-top-2">
+            <span class="text-normal">
+              Joined in <%= @user.created_at.strftime("%B %Y") %>
+            </span>
+            <br> <br>
+            <% if @artworks.empty? %>
+              <p>This user hasn't listed any artworks yet.</p>
+            <% else %>
+              <h3>His artworks ( <%= @artworks.count %> )</h3>
+              <div class="row">
+                <% @artworks.each do |artwork| %>
+                  <div class="col-xs-12 col-md-4 col-sm-6 ">
+                    <div class="card">
+                      <div id="card-category">
+                        <p> <%= artwork.category %> </p>
+                      </div>
+                      <div class="card-description">
+                        <h3><%= artwork.name %></h3>
+                        <h5> <%= artwork.artist_name %> </h5>
+                      </div>
+                      <div class="card-price">
+                        <p> <%= artwork.price %> € / day</p>
+                      </div>
+                      <div class="card-photo">
+                        <%= cl_image_tag artwork.photo, height: 110, width: 150, crop: :fill %>
+                      </div>
+                      <div class="card-link">
+                        <%= link_to '', artwork, {class: "btn-card-link"} %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+          <% end %>
+        </div>
+        <div class="review-section">
+          <% unless @reviews.empty? %>
+            <h3>Reviews ( <%= @reviews.count %> ) </h3>
+            <div class="reviews">
+              <div class="row">
+                <% @reviews.each do |review| %>
+                  <div class="col-md-2 ">
+                    <div class="review-photo">
+                      <img alt="François" class="img-user" height="225" src="http://lorempixel.com/200/200" title=" François" width="225" />
+                    </div>
+                  </div>
+                <div class="col-md-10">
+                    <p> <%= review.body %> </p>
+                    <p> <%= review.rating %> / 5 - Posted on: <%= review.created_at.strftime("%B %Y") %> </p>
+                   <div class="row space-2 line-separation">
+                       <div class="col-10 col-offset-2">
+                         <hr>
+                       </div>
+                    </div>
+                </div>
+              <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
-
-  <div class="container">
-  <% unless @reviews.empty? %>
-  <h3>Reviews: </h3>
-    <% @reviews.each do |review| %>
-      <p> <%= review.created_at %> </p>
-      <p> <%= review.body %> </p>
-      <p> <%= review.rating %> </p>
-    <% end %>
-  <% end %>
-  </div>
-
-  <div class="container">
-    <div class="review-form">
-      <% if @user.where(@booking.user.exists?, @booking.user.ends_on < Time.now) %>
-        <h3>Leave a review:</h3>
-        <%= simple_form_for [Review.new], url: create_review_path(@user), method: :post do |f| %>
-          <%= f.input :body %>
-          <%= f.input :rating %>
-          <%= f.submit "Submit", class: "btn btn-primary margin-bottom" %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-
 </div>
 
 
+
+
+      <div class="review-form">
+        <% if @bookings != nil && @bookings.where("ends_on <= ?", Time.now) %>
+          <h3>Leave a review:</h3>
+          <%= simple_form_for [Review.new], url: create_review_path(@user), method: :post do |f| %>
+            <%= f.input :body %>
+            <%= f.input :rating %>
+            <%= f.submit "Submit", class: "btn btn-primary margin-bottom" %>
+          <% end %>
+        <% end %>
+      </div>
+</div>
 
 
 

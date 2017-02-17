@@ -8,7 +8,7 @@ class Artwork < ApplicationRecord
   validates :category, presence: true
   validates :dimensions, presence: true
   validates :price, presence: true
-  validates :photo, presence: true
+  # validates :photo, presence: true
 
   ARTWORK_CATEGORY = ["Painting", "Sculpture", "Photography", "Icon", "Drawing"]
 
