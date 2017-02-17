@@ -9,7 +9,7 @@ class NewsletterOk
     @gibbon.lists(@list_id).members.create(
           body: {
             email_address: params[:email],
-            status: "subscribed",
+            status: "subscribed"
             # merge_fields: {
             #   FNAME: @user.first_name,
             #   LNAME: @user.last_name

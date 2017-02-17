@@ -11,7 +11,6 @@ class SubscribeToNewsletterService
       body: {
         email_address: @user.email,
         status: "subscribed"
-        }
       }
     )
   end
