@@ -11,6 +11,7 @@
         <h3> <%= booking.artwork.name %> </h3>
         <p> <strong>Starts on:</strong> <%= booking.starts_on.strftime('%a %d %b %Y') %> </p>
         <p> <strong>Ends on:</strong> <%= booking.ends_on.strftime('%a %d %b %Y') %> </p>
+        <p> <strong>Owner:</strong> <%= link_to booking.artwork.user.email, user_path(booking.artwork.user) %></p>
         <p> <strong>Price:</strong> <%= booking.price %> €</p>
       </div>
 

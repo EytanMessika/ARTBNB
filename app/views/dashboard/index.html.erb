@@ -1,6 +1,26 @@
-<div class="container text-center">
-  <h1 class="dashboard-title">My <span class="minted">art</span>board</h1>
+  <div class="container text-center ">
+   <h1 class="dashboard-title">My <span class="minted">art</span>board</h1>
+   <div class="row">
+     <div class="col-xs-8 col-xs-offset-2">
+       <div class="">
+        <div id="profiler">
+          <% avatar_url = current_user.facebook_picture_url || default_avatar = "https://galerie.alittlemarket.com/galerie/sell/2626440/peintures-tableau-acrylique-abstrait-moderne-19314354-20161029-14541891a7-f00a9_big.jpg" %>
+          <%= image_tag avatar_url, class: "avatar-large"%>
+          <div>
+            <% if current_user.first_name != nil  %>
+            <h4> <%= current_user.first_name %></h4>
+            <h4> <%= current_user.last_name %></h4>
+            <% else %>
+            <h5> <%= current_user.email %></h5>
+            <% end %>
+          </div>
+        </div>
+        <%= link_to " Edit your profile", edit_user_registration_path, class: "btn btn-booking-dash" %>
+      </div>
+    </div>
+  </div>
 </div>
+
 <div class="container text-center">
   <div class="tabs">
     <a class="tab active" data-target="#bookings" id="my-bookings-tab">
@@ -24,12 +44,12 @@
 </div>
 
 <% if params[:tab] %>
-  <% content_for :after_js do %>
-    <%= javascript_tag do %>
-      var tab = '#' + '<%= params[:tab] %>';
-      setTimeout(function() {
-        $(tab).click();
-      }, 2);
-    <% end %>
-  <% end %>
+<% content_for :after_js do %>
+<%= javascript_tag do %>
+var tab = '#' + '<%= params[:tab] %>';
+setTimeout(function() {
+$(tab).click();
+}, 20);
+<% end %>
+<% end %>
 <% end %>
