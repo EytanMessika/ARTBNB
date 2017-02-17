@@ -1,90 +1,79 @@
-<div class="banner margin-bottom" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%), url(<%= @artwork.photo %>); height: 50vh; background-position: center; background-size: cover">
-</div>
-
-
-<% if current_user == @artwork.user %>
-<ul class="list-inline list-margined">
-	<li>
-		<%= link_to "Edit artwork", edit_artwork_path(@artwork), class: "btn btn-primary" %>
-	</li>
-	<li>
-		<%= link_to "Delete artwork", artwork_path(@artwork), method: :delete, class: "btn btn-danger" %>
-	</li>
-	<% end %>
-</ul>
-<div class="header-flat">
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12 col-sm-6 col-sm-offset-1 margin-bottom">
-				<h1 class="text-center"><%= @artwork.name %></h1>
-				<div class="text-center">
-					<p> <strong>Artist name :</strong> <%= @artwork.artist_name %></p>
-					<p> <strong>Category :</strong> <%= @artwork.category %></p>
-					<p> <strong>Price : </strong><%= @artwork.price %> € / Day</p>
-					<p class="margin-bottom"><strong> Dimensions : </strong> <%= @artwork.dimensions %></p>
-				</div class = "margin-bottom">
-				<div class="photo-margined">
-					<%= cl_image_tag @artwork.photo,
-					width: 300, height: 300, crop: :fill %>
-				</div>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-sm-8">
+			<h1 class="text-center"><%= @artwork.name %></h1>
+			<div class="text-center">
+				<p> <strong>Artist name :</strong> <%= @artwork.artist_name %></p>
+				<p> <strong>Category :</strong> <%= @artwork.category %></p>
+				<p> <strong>Price : </strong><%= @artwork.price %> € / Day</p>
+				<p class="margin-bottom"><strong> Dimensions : </strong> <%= @artwork.dimensions %></p>
+			</div class = "margin-bottom">
+			<div class="photo-margined">
+				<%= cl_image_tag @artwork.photo,
+				width: 300, height: 300, crop: :fill %>
 			</div>
+		</div>
 
-			<div class="col-xs-12 col-sm-4">
-				<div class="booking-card">
-					<div class="booking-price-area">
-						<div class="row">
-							<div class="col-xs-8">
-								<span class="booking-price"><%= @artwork.price %>€</span>
-							</div>
-							<div class="col-xs-4">
-								<span class= "price-frequency">per day</span>
-							</div>
+		<div class="col-xs-12 col-sm-4">
+			<div class="booking-card">
+				<div class="booking-price-area">
+					<div class="row">
+						<div class="col-xs-8">
+							<span class="booking-price"><%= @artwork.price %>€</span>
+						</div>
+						<div class="col-xs-4">
+							<span class= "price-frequency">per day</span>
 						</div>
 					</div>
-					<div class="booking-form">
-						<h3>Book it</h3>
-						<%= render 'artworks/form_bookings' %>
-					</div>
+				</div>
+				<div class="booking-form">
+					<h3>Book it</h3>
+					<%= render 'artworks/form_bookings' %>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<!-- <div class="flat-description">
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12 col-sm-10 col-sm-offset-1">
-				<h2>About this piece of art</h2>
-				<p>
-					Reviews from previous bookings
-				</p>
+<% if current_user == @artwork.user %>
+	<ul class="list-inline list-margined">
+		<li>
+			<%= link_to "Edit artwork", edit_artwork_path(@artwork), class: "btn btn-primary" %>
+		</li>
+		<li>
+			<%= link_to "Delete artwork", artwork_path(@artwork), method: :delete, class: "btn btn-danger" %>
+		</li>
+	</ul>
+<% end %>
 
-				<hr>
-				<div class="row" id="flat-data">
-					<div class="col-xs-12 col-sm-2">
-						<span class="review-stars">
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star-half-o" aria-hidden="true"></i>
-						</span>
-						<span class="review-data">
-							14/02/2017
-						</span>
-					</div>
-					<div class="col-xs-12 col-sm-4">
+<div id="map-container">
+	<div id="map" style="width: 90%; height: 400px;"></div>
+</div>
 
-					</div>
-					<hr>
+<!-- display map with marker -->
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+    	var styles = [{"featureType":"administrative","elementType":"all","stylers":[{"saturation":"-100"}]},{"featureType":"administrative.province","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"landscape","elementType":"all","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","elementType":"all","stylers":[{"saturation":-100},{"lightness":"50"},{"visibility":"simplified"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":"-100"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"all","stylers":[{"lightness":"30"}]},{"featureType":"road.local","elementType":"all","stylers":[{"lightness":"40"}]},{"featureType":"transit","elementType":"all","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]},{"featureType":"water","elementType":"labels","stylers":[{"lightness":-25},{"saturation":-100}]}];
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ 
+				provider: {
+			    styles: styles
+			  },
+      	internal: { id: 'map' } }, function() {
+	        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+	        handler.bounds.extendWith(markers);
+	        handler.fitMapToBounds();
+	        if (markers.length == 0) {
+	          handler.getMap().setZoom(2);
+	        } else if (markers.length == 1) {
+	          handler.getMap().setZoom(12);
+	        }
+      });
+    });
+  <% end %>
+<% end %>
 
-				</div>
-			</div>
-		</div>
-	</div>
-  </div>
--->
 
 <!-- calulate price and display it -->
 <% content_for(:after_js) do %>

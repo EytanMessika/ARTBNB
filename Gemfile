@@ -11,6 +11,14 @@ gem 'redis'
 
 gem 'gibbon'
 
+gem "geocoder"
+gem "coffee-rails"
+gem "gmaps4rails"
+
+source 'https://rails-assets.org' do
+  gem "rails-assets-underscore"
+end
+
 gem 'omniauth-facebook'
 
 gem 'cloudinary', '1.1.0'

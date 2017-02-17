@@ -3,17 +3,26 @@ class ArtworksController < ApplicationController
 
   def index
     @artworks = Artwork.all
-    if params[:search]
-      @artworks = Artwork.search(params[:search])
-    end
-    if params[:search_price] != ""
-      @artworks = @artworks.where("price < ?", params[:search_price])
+    if params[:search] == nil && params[:search_price] == nil
+      @artworks = Artwork.all
+    elsif params[:search] != "" && params[:search_price] == ""
+      @artworks = @artworks.where("category = ?", params[:search])
+    elsif params[:search_price] != "" && params[:search] == ""
+      @artworks = @artworks.where("price <= ?", params[:search_price])
+    elsif params[:search_price] != "" && params[:search] != ""
+      @artworks = @artworks.where("price <= ? AND category = ?", params[:search_price], params[:search])
     end
   end
 
   def show
     @artwork = Artwork.find(params[:id])
+    # @artwork_coordinates = { lat: @artwork.latitude, lng: @artwork.longitude }
     @booking = Booking.new()
+
+    @hash = Gmaps4rails.build_markers([ @artwork ]) do |artwork, marker|
+      marker.lat artwork.latitude
+      marker.lng artwork.longitude
+    end
   end
 
   def new
@@ -57,6 +66,6 @@ class ArtworksController < ApplicationController
 
   def artwork_params
     params.require(:artwork).permit(:name, :artist_name, :category, :price,
-    :dimensions, :user_id, :photo, :photo_cache)
+    :dimensions, :user_id, :photo, :photo_cache, :address, :description)
   end
 end
