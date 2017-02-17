@@ -8,7 +8,9 @@
 
     <div class="product">
       <div class="photo-div">
+      <%= link_to artwork_path(artwork) do %>
         <%= cl_image_tag(artwork.photo, width: 400, height: 600, crop: :limit, class:"product-image") %>
+        <% end %>
       </div>
       <div class='product-body'>
         <h3> <%= artwork.name %> </h3>
