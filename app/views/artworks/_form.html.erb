@@ -3,6 +3,7 @@
   <%= f.input :artist_name %>
   <%= f.input :category, :collection => Artwork::ARTWORK_CATEGORY %>
   <%= f.input :dimensions, placeholder: "Width x height x depth (in cm) " %>
+  <%= f.input :description, placeholder: "Describe your piece of art" %>
   <%= f.input :address, placeholder: "Address" %>
   <%= f.input :price, placeholder: "In Euros per day" %>
   <%= f.input :photo %>

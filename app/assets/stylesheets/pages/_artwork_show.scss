@@ -1,7 +1,3 @@
-.header-flat {
-	border: 1px solid #dce0e0;
-}
-
 .flat-description {
 	background: #F5F5F5;
 	padding: 50px 0;
@@ -28,4 +24,11 @@
 }
 .photo-margined {
   margin-left: 60px;
+}
+
+#map-container {
+	margin: 20px 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
