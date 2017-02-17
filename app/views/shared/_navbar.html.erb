@@ -10,42 +10,48 @@
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
 
-      <!-- Profile picture and dropdown -->
-      <div class="navbar-wagon-item">
-        <div class="dropdown">
+        <%= link_to "Find an artwork", artworks_path, class: "btn btn-navbar" %>
 
-      <%= link_to "Find an artwork", artworks_path, class: "btn btn-navbar" %>
+        <%= link_to (current_user.artworks.empty? ? "Become a collectioner" : "Add a piece of art"), new_artwork_path, class: "btn btn-navbar" %>
+    <!-- Profile picture and dropdown -->
+    <div class="navbar-wagon-item">
+      <div class="dropdown badge-container">
 
-       <%= link_to (current_user.artworks.empty? ? "Become a collectioner" : "Add a piece of art"), new_artwork_path, class: "btn btn-navbar" %>
 
         <% avatar_url = current_user.facebook_picture_url || "https://galerie.alittlemarket.com/galerie/sell/2626440/peintures-tableau-acrylique-abstrait-moderne-19314354-20161029-14541891a7-f00a9_big.jpg" %>
-        <%= image_tag avatar_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+        <% if Booking.where(status: "Pending").count > 0 && Booking.check_user(current_user) %>
+        
+          <%= image_tag avatar_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <div class="badge badge-red"><i class="fa fa-bell" aria-hidden="true"></i>
+          </div>
 
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-            <li>
-              <%= link_to dashboard_path do %>
-                <i class="fa fa-home"></i>  <%= t(".profile", default: "Dashboard") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to profile_path do %>
-               <i class="fa fa-user" aria-hidden="true"></i> <%= t(".profile", default: "My Profile") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-              <% end %>
-            </li>
-          </ul>
-        </div>
+        <% else %>
+
+        <%= image_tag avatar_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+        <% end %>
+
+
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li>
+            <%= link_to dashboard_path do %>
+            <i class="fa fa-home"></i>  <%= t(".profile", default: "My artboard") %>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+            <% end %>
+          </li>
+        </ul>
       </div>
+    </div>
 
     <% else %>
 
-      <!-- Login text link -->
-      <%= link_to t(".sign_up", default: "Join our collectionners"), new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <!-- Login text link -->
+    <%= link_to t(".sign_up", default: "Join our collectionners"), new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
     <% end %>
 

@@ -33,7 +33,7 @@ class ArtworksController < ApplicationController
     @artwork = Artwork.new(artwork_params)
     @artwork.user = current_user
     if @artwork.save
-      redirect_to dashboard_path(tab: "my-artworks-tab")
+      redirect_to artwork_path(@artwork)
     else
       render :new
     end

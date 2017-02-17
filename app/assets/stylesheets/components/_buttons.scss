@@ -16,6 +16,24 @@
     }
 }
 
+.btn-booking-dash {
+    width: 30%;
+    margin-top: 10px; 
+    color: #4C4C4C;
+    border: 1px solid #929395;
+    border-radius: 50px;
+    font-weight: lighter;
+    opacity: 0.8;
+    transition: all 0.2s ease;
+    &:hover {
+        background-color: #3c3f40;
+        opacity: 0.9;
+        text-decoration: none;
+        color: white;
+        border-color: #3c3f40;
+    }
+}
+
 .btn-delete {
     width: 99.5%;
     margin-top: 10px; 
