@@ -5,8 +5,8 @@
 		<h3>Rent a <span class="minted">unique masterpiece</span> for your next <span class="minted">events.</span> </h3> <br>
      <div class="search-container">
      <%= form_tag(artworks_path, :method => "get", id: "search-form", class: "form-inline") do %>
-      <%= select_tag :search, options_for_select(Artwork::ARTWORK_CATEGORY, params[:search]), prompt: "All categories", class: "navbar-wagon-search-input form-control" %>
-      <%= text_field_tag :search_price, params[:search_price], placeholder: "Max daily budget (€)", class: "navbar-wagon-search-input form-control"%>
+      <%= select_tag :search, options_for_select(Artwork::ARTWORK_CATEGORY, params[:search]), prompt: "All categories", class: "navbar-wagon-search-input my-select-control" %>
+      <%= text_field_tag :search_price, params[:search_price], placeholder: "Max daily budget (€)", class: "navbar-wagon-search-input my-text-control"%>
       <%= submit_tag "Take a look", :name => nil, class: "navbar-wagon-search-input form-control btn btn-home" %>
     <% end %>
     </div>
