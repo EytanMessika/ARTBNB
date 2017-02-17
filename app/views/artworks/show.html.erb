@@ -1,36 +1,34 @@
-<div class="header-flat">
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12 col-sm-6 col-sm-offset-1 margin-bottom">
-				<h1 class="text-center"><%= @artwork.name %></h1>
-				<div class="text-center">
-					<p> <strong>Artist name :</strong> <%= @artwork.artist_name %></p>
-					<p> <strong>Category :</strong> <%= @artwork.category %></p>
-					<p> <strong>Price : </strong><%= @artwork.price %> € / Day</p>
-					<p class="margin-bottom"><strong> Dimensions : </strong> <%= @artwork.dimensions %></p>
-				</div class = "margin-bottom">
-				<div class="photo-margined">
-					<%= cl_image_tag @artwork.photo,
-					width: 300, height: 300, crop: :fill %>
-				</div>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-sm-8">
+			<h1 class="text-center"><%= @artwork.name %></h1>
+			<div class="text-center">
+				<p> <strong>Artist name :</strong> <%= @artwork.artist_name %></p>
+				<p> <strong>Category :</strong> <%= @artwork.category %></p>
+				<p> <strong>Price : </strong><%= @artwork.price %> € / Day</p>
+				<p class="margin-bottom"><strong> Dimensions : </strong> <%= @artwork.dimensions %></p>
+			</div class = "margin-bottom">
+			<div class="photo-margined">
+				<%= cl_image_tag @artwork.photo,
+				width: 300, height: 300, crop: :fill %>
 			</div>
+		</div>
 
-			<div class="col-xs-12 col-sm-4">
-				<div class="booking-card">
-					<div class="booking-price-area">
-						<div class="row">
-							<div class="col-xs-8">
-								<span class="booking-price"><%= @artwork.price %>€</span>
-							</div>
-							<div class="col-xs-4">
-								<span class= "price-frequency">per day</span>
-							</div>
+		<div class="col-xs-12 col-sm-4">
+			<div class="booking-card">
+				<div class="booking-price-area">
+					<div class="row">
+						<div class="col-xs-8">
+							<span class="booking-price"><%= @artwork.price %>€</span>
+						</div>
+						<div class="col-xs-4">
+							<span class= "price-frequency">per day</span>
 						</div>
 					</div>
-					<div class="booking-form">
-						<h3>Book it</h3>
-						<%= render 'artworks/form_bookings' %>
-					</div>
+				</div>
+				<div class="booking-form">
+					<h3>Book it</h3>
+					<%= render 'artworks/form_bookings' %>
 				</div>
 			</div>
 		</div>
@@ -48,7 +46,9 @@
 	</ul>
 <% end %>
 
-<div id="map" style="width: 100%; height: 600px;"></div>
+<div id="map-container">
+	<div id="map" style="width: 90%; height: 400px;"></div>
+</div>
 
 <!-- display map with marker -->
 <% content_for(:after_js) do %>
